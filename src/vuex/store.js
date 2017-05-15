@@ -16,11 +16,11 @@ const mutations = {
 };
 
 const actions = {
-  connect: ({ commit }) => commit('CONNECT');
+  connect: ({ commit }) => commit('CONNECT'),
 };
 
 const getters = {
-  connect: state => state.connected,
+  connected: state => state.connected,
 };
 
 export default new Vuex.Store({
