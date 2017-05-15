@@ -1,9 +1,9 @@
 <template>
 <v-app top-toolbar sidebar-under-toolbar fixed-left-sidebar>
   <v-toolbar fixed>
-    <v-toolbar-side-icon @click.native.stop="sidebar = !sidebar" />
-    <v-toolbar-logo class="hidden-sm-and-down">Tutor'App</v-toolbar-logo>
-    <v-toolbar-title></v-toolbar-title>
+    <v-toolbar-side-icon v-if="connected" @click.native.stop="sidebar = !sidebar" />
+    <v-toolbar-logo></v-toolbar-logo>
+    <v-toolbar-title class="hidden-sm-and-down">Tutor'App</v-toolbar-title>
     <v-toolbar-items v-if="connected">
       <v-toolbar-item>
         ITEM 1
@@ -16,15 +16,30 @@
   <main>
     <v-sidebar left drawer v-model="sidebar" v-if="connected">
       <v-list>
-        <v-subheader>MENU</v-subheader>
+        <v-subheader>Thomas Sauvajon</v-subheader>
         <v-list-item>
           <v-list-tile>
-            <v-list-tile-title>Menu 1</v-list-tile-title>
+            <v-list-tile-title>Profil</v-list-tile-title>
           </v-list-tile>
         </v-list-item>
         <v-list-item>
           <v-list-tile>
-            <v-list-tile-title>Menu 2</v-list-tile-title>
+            <v-list-tile-title>Mes cours</v-list-tile-title>
+          </v-list-tile>
+        </v-list-item>
+        <v-list-item>
+          <v-list-tile>
+            <v-list-tile-title>Tous les cours</v-list-tile-title>
+          </v-list-tile>
+        </v-list-item>
+        <v-list-item>
+          <v-list-tile>
+            <v-list-tile-title>Planning</v-list-tile-title>
+          </v-list-tile>
+        </v-list-item>
+        <v-list-item>
+          <v-list-tile>
+            <v-list-tile-title>Chat</v-list-tile-title>
           </v-list-tile>
         </v-list-item>
       </v-list>
@@ -36,8 +51,18 @@
           <router-view></router-view>
         </template>
         <template v-else>
-            <v-btn default primary class="white--text" @click.native.stop="connect">Se connecter</v-btn>
-            <v-btn default primary class="white--text" @click.native.stop="connect">S'enregistrer</v-btn>
+          <center>
+            <v-btn default primary class="white--text" @click.native.stop="connect">
+              Se connecter
+            </v-btn><br><v-btn
+              default
+              primary
+              class="white--text"
+              @click.native.stop="connect"
+            >
+              S'enregistrer
+            </v-btn>
+          </center>
           </template>
       </v-container>
     </v-content>
@@ -49,6 +74,10 @@
 import {
   mapGetters
 } from 'vuex';
+
+const sideMenu = {
+  //TODO
+};
 
 export default {
   data: () => ({
