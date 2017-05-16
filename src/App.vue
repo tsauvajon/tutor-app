@@ -2,14 +2,11 @@
 <v-app top-toolbar sidebar-under-toolbar fixed-left-sidebar>
   <v-toolbar fixed>
     <v-toolbar-side-icon v-if="connected" @click.native.stop="sidebar = !sidebar" />
-    <v-toolbar-logo></v-toolbar-logo>
-    <v-toolbar-title class="hidden-sm-and-down">Tutor'App</v-toolbar-title>
+    <v-toolbar-logo v-if="!connected">Tutor'App</v-toolbar-logo>
+    <v-toolbar-title v-if="connected" class="hidden-sm-and-down">Tutor'App</v-toolbar-title>
     <v-toolbar-items v-if="connected">
-      <v-toolbar-item>
-        ITEM 1
-      </v-toolbar-item>
-      <v-toolbar-item>
-        ITEM 2
+      <v-toolbar-item v-for="nav in navigation" :href="nav.href" router :key="nav.href.name">
+        {{ nav.name }}
       </v-toolbar-item>
     </v-toolbar-items>
   </v-toolbar>
@@ -17,29 +14,9 @@
     <v-sidebar left drawer v-model="sidebar" v-if="connected">
       <v-list>
         <v-subheader>Thomas Sauvajon</v-subheader>
-        <v-list-item>
-          <v-list-tile>
-            <v-list-tile-title>Profil</v-list-tile-title>
-          </v-list-tile>
-        </v-list-item>
-        <v-list-item>
-          <v-list-tile>
-            <v-list-tile-title>Mes cours</v-list-tile-title>
-          </v-list-tile>
-        </v-list-item>
-        <v-list-item>
-          <v-list-tile>
-            <v-list-tile-title>Tous les cours</v-list-tile-title>
-          </v-list-tile>
-        </v-list-item>
-        <v-list-item>
-          <v-list-tile>
-            <v-list-tile-title>Planning</v-list-tile-title>
-          </v-list-tile>
-        </v-list-item>
-        <v-list-item>
-          <v-list-tile>
-            <v-list-tile-title>Chat</v-list-tile-title>
+        <v-list-item v-for="item in sideMenuItems" :key="item.name">
+          <v-list-tile router :href="item.href">
+            <v-list-tile-title>{{ item.name }}</v-list-tile-title>
           </v-list-tile>
         </v-list-item>
       </v-list>
@@ -51,19 +28,48 @@
           <router-view></router-view>
         </template>
         <template v-else>
-          <center>
-            <v-btn default primary class="white--text" @click.native.stop="connect">
-              Se connecter
-            </v-btn><br><v-btn
-              default
-              primary
-              class="white--text"
-              @click.native.stop="connect"
-            >
-              S'enregistrer
-            </v-btn>
-          </center>
-          </template>
+          <v-list>
+            <v-subheader>Se connecter</v-subheader>
+            <v-list-item v-on:click="connect">
+              <v-list-tile>
+                <v-list-tile-content>
+                  <v-list-tile-title>
+                    Google
+                  </v-list-tile-title>
+                </v-list-tile-content>
+              </v-list-tile>
+            </v-list-item>
+            <v-list-item v-on:click="connect">
+              <v-list-tile>
+                <v-list-tile-content>
+                  <v-list-tile-title>
+                    Facebook
+                  </v-list-tile-title>
+                </v-list-tile-content>
+              </v-list-tile>
+            </v-list-item>
+            <v-divider inset />
+            <v-subheader>S'enregistrer</v-subheader>
+            <v-list-item>
+              <v-list-tile>
+                <v-list-tile-content>
+                  <v-list-tile-title>
+                    Google
+                  </v-list-tile-title>
+                </v-list-tile-content>
+              </v-list-tile>
+            </v-list-item>
+            <v-list-item>
+              <v-list-tile>
+                <v-list-tile-content>
+                  <v-list-tile-title>
+                    Facebook
+                  </v-list-tile-title>
+                </v-list-tile-content>
+              </v-list-tile>
+            </v-list-item>
+          </v-list>
+        </template>
       </v-container>
     </v-content>
   </main>
@@ -72,16 +78,61 @@
 
 <script>
 import {
-  mapGetters
+  mapGetters,
+  mapActions,
 } from 'vuex';
 
-const sideMenu = {
-  //TODO
-};
+const sideMenuItems = [{
+    name: 'Profil',
+    href: {
+      name: 'profile',
+    },
+  },
+  {
+    name: 'Mes cours',
+    href: {
+      name: 'mycourses',
+    },
+  },
+  {
+    name: 'Tous les cours',
+    href: {
+      name: 'courses',
+    },
+  },
+  {
+    name: 'Mon planning',
+    href: {
+      name: 'agenda',
+    },
+  },
+  {
+    name: 'Chat',
+    href: {
+      name: 'chat',
+    },
+  },
+];
+
+const navigation = [{
+    name: 'Utilisateurs',
+    href: {
+      name: 'users',
+    },
+  },
+  {
+    name: 'Paramètres',
+    href: {
+      name: 'params',
+    },
+  },
+];
 
 export default {
   data: () => ({
     sidebar: false,
+    navigation,
+    sideMenuItems,
   }),
   computed: {
     ...mapGetters([
@@ -89,9 +140,9 @@ export default {
     ]),
   },
   methods: {
-    connect() {
-      this.$store.dispatch('connect');
-    },
+    ...mapActions([
+      'connect',
+    ]),
   },
 };
 </script>
