@@ -1,8 +1,6 @@
 <template>
 <div>
-  Home<br>
-<br>
-  Todo: Fix webpack config, to load .vue files
+  <h1 class="display-3">Home</h1>
 </div>
 </template>
 

@@ -11,7 +11,8 @@ module.exports = {
   resolve: {
     alias: {
       'public': path.resolve(__dirname, './public')
-    }
+    },    
+    extensions: ['*', '.js', '.vue', '.json']
   },
   module: {
     rules: [

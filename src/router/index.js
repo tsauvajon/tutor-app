@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Home from '../components/Home.vue';
-import Params from '../components/Admin/Params.vue';
-import Users from '../components/Admin/Users.vue';
+import Home from '../components/Home';
+import Params from '../components/Admin/Params';
+import Users from '../components/Admin/Users';
 
 Vue.use(VueRouter);
 
