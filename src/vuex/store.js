@@ -7,6 +7,7 @@ const api = "http://";
 
 const state = {
   connected: false,
+  isAdmin: true,
 };
 
 const mutations = {
@@ -21,6 +22,7 @@ const actions = {
 
 const getters = {
   connected: state => state.connected,
+  isAdmin: state => state.isAdmin,
 };
 
 export default new Vuex.Store({

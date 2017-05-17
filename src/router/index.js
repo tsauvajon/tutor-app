@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import Home from '../components/Home';
 import Params from '../components/Admin/Params';
 import Users from '../components/Admin/Users';
+import Profile from '../components/Profile';
 
 Vue.use(VueRouter);
 
@@ -26,7 +27,7 @@ export default new VueRouter({
     {
       path: '/profile',
       name: 'profile',
-      component: Home,
+      component: Profile,
     },
     {
       path: '/courses/mine',

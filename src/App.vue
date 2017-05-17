@@ -2,13 +2,17 @@
 <v-app top-toolbar sidebar-under-toolbar fixed-left-sidebar>
   <v-toolbar fixed>
     <v-toolbar-side-icon v-if="connected" @click.native.stop="sidebar = !sidebar" />
-    <v-toolbar-logo v-if="!connected">Tutor'App</v-toolbar-logo>
-    <v-toolbar-title v-if="connected" class="hidden-sm-and-down">Tutor'App</v-toolbar-title>
-    <v-toolbar-items v-if="connected">
-      <v-toolbar-item v-for="nav in navigation" :href="nav.href" router :key="nav.href.name">
-        {{ nav.name }}
-      </v-toolbar-item>
-    </v-toolbar-items>
+    <v-toolbar-logo v-if="!connected">
+      Tutor'App
+    </v-toolbar-logo>
+    <template v-if="isAdmin">
+      <v-toolbar-title v-if="connected" class="hidden-sm-and-down">Tutor'App</v-toolbar-title>
+      <v-toolbar-items v-if="connected">
+        <v-toolbar-item v-for="nav in navigation" :href="nav.href" router :key="nav.href.name">
+          {{ nav.name }}
+        </v-toolbar-item>
+      </v-toolbar-items>
+    </template>
   </v-toolbar>
   <main>
     <v-sidebar left drawer v-model="sidebar" v-if="connected">
@@ -55,6 +59,7 @@ export default {
   computed: {
     ...mapGetters([
       'connected',
+      'isAdmin',
     ]),
   },
   components: {
