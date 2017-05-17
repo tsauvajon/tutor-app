@@ -71,4 +71,5 @@ export default {
 <style lang="stylus">
   @import './stylus/main'
   @import './css/main.css'
+  @import './css/animate.css'
 </style>

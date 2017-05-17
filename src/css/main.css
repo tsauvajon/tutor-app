@@ -41,8 +41,12 @@
   margin-right: auto;
 }
 
-
 body {
   /* grey darken-2 */
   color: #212121;
+  background: #f5f5f5 !important;
+}
+
+.content {
+  background: none !important;
 }
