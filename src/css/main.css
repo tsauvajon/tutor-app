@@ -50,3 +50,10 @@ body {
 .content {
   background: none !important;
 }
+
+.fab {
+  position: fixed !important;
+  bottom: 20px;
+  right: 20px;
+  z-index: 4;
+}

@@ -12,6 +12,10 @@
           {{ nav.name }}
         </v-toolbar-item>
       </v-toolbar-items>
+      <v-spacer />
+      <v-btn icon>
+        <v-icon>search</v-icon>
+      </v-btn>
     </template>
   </v-toolbar>
   <main>
