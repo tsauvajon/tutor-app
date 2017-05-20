@@ -4,6 +4,7 @@ import Home from '../components/Home';
 import Params from '../components/Admin/Params';
 import Users from '../components/Admin/Users';
 import Profile from '../components/Profile';
+import Courses from '../components/Courses';
 
 Vue.use(VueRouter);
 
@@ -37,7 +38,7 @@ export default new VueRouter({
     {
       path: '/courses',
       name: 'courses',
-      component: Home,
+      component: Courses,
     },
     {
       path: '/agenda',
