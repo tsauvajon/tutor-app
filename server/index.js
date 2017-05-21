@@ -2,22 +2,25 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const firebase = require('firebase');
-// require('firebase/auth');
-// require('firebase/database');
+require('firebase/auth');
 
 const fbConfig = require('./.firebaserc.private');
-
-// const { user, password } = require('./.mongo-config.js');
-// const Course = require('./models/course');
+const { email, password } = require('./private/auth');
 
 const app = express();
 const router = express.Router();
 const port = process.env.PORT | 8888;
 
+// firebase
+
 firebase.initializeApp(fbConfig);
 const database = firebase.database();
-
-// const dbUrl = `mongodb://${user}:${password}@ds161518.mlab.com:61518/tutor-app`;
+firebase.auth().signInWithEmailAndPassword(email, password).catch((error) => {
+  const { code, message } = error;
+  console.log(code, message);
+  var errorCode = error.code;
+  var errorMessage = error.message;
+});
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -27,16 +30,9 @@ router.get('/', (req, res) => res.json({ message: 'welcome' }));
 // prefix
 app.use('/api', router);
 
+// start the server
 app.listen(port);
 console.log(`Server on port ${port}`);
-
-// firebase
-
-
-// // read / listen
-// database.child("users").on('value', function(snapshot) {
-//   // ...
-// });
 
 // ROUTES
 
@@ -49,12 +45,9 @@ router.route('/courses')
       chips,
       createdAt: Date.now(),
     };
-    let key = database.ref().child('courses').push({
-      title: data.title,
-      description: data.description,
-      chips: data.chips,
-      createdAt: data.createdAt,
-    }).key;
+    const key = database.ref().child('courses').push(
+      Object.assign({}, data)
+    ).key;
     return res.status(201).json({
       message: 'Course CREATED',
       data,
@@ -74,22 +67,24 @@ router.route('/courses')
       });
     });
   });
-  // .post((req, res) => {
-  //   const course = new Course();
-  //   course.title = 'Initiation à React';
-  //   course.description = `Un cours de A à Z pour s'initier à React,
-  //     comment mettre en place un environnement de développement etc.`;
-  //   course.chips = [
-  //     'javascript',
-  //     'développement',
-  //     'front-end',
-  //   ];
-  //   course.date = new Date();
-  //   course.views = 0;
-  //   course.save(err => {
-  //     if (err) {
-  //       return res.send(err);
-  //     }
-  //     return res.status(200).json({ message: 'Course created' });
-  //   });
-  // });
+
+router.route('/courses/:id')
+  .put((req, res) => {
+
+  })
+  .get((req, res) => {
+    database.ref(`courses/${req.params.id}`).on('value', (snapshot) => {
+      if (snapshot.val() === null) {
+        return res.status(404).json({
+          message: 'NOT FOUND',
+        });
+      }
+      return res.status(200).json({
+        message: 'OK',
+        data: snapshot.val(),
+      });
+    });
+  })
+  .delete((req, res) => {
+
+  })
