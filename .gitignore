@@ -3,5 +3,5 @@ node_modules/
 dist/
 npm-debug.log
 
-# private vars
-server/.mongo-config.js
+# private
+server/.firebaserc.private.js

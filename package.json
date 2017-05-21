@@ -10,6 +10,7 @@
   "dependencies": {
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
+    "firebase": "^4.0.0",
     "mongoose": "^4.10.0",
     "vue-router": "^2.2.0",
     "vue-server-renderer": "^2.1.10",
