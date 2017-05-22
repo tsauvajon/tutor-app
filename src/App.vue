@@ -32,7 +32,7 @@
         <v-subheader>{{ user.email }}</v-subheader>
         <v-divider />
         <v-list-item v-for="item in sideMenuItems" :key="item.name">
-          <v-list-tile router :href="item.href">
+          <v-list-tile ripple router :href="item.href">
             <v-list-tile-title>{{ item.name }}</v-list-tile-title>
           </v-list-tile>
         </v-list-item>
@@ -88,6 +88,7 @@ export default {
     },
 
     onSignOut() {
+      console.log('onSignOut');
       this.$router.push('/auth');
     },
 

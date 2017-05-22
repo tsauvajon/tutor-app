@@ -3,15 +3,13 @@
   <div>
     <v-card hover raised class="ta-small-container animated fadeInUp xfast">
       <v-card-row>
-        <v-card-title class="secondary--text">Profil</v-card-title>
+        <v-card-title class="secondary--text">
+          <img style="border-radius: 5%;" :src="user.photoURL" height="100px" />
+        </v-card-title>
       </v-card-row>
       <v-card-row>
         <v-list two-line class="ta-inner-container">
-          <v-list-item
-            class="blue-grey lighten-4"
-            @click="editedIndex = editedIndex === 0 ? -1 : 0"
-            :class="{extended: (editedIndex === 0)}"
-          >
+          <v-list-item class="blue-grey lighten-4" @click="editedIndex = editedIndex === 0 ? -1 : 0" :class="{extended: (editedIndex === 0)}">
             <v-list-tile class="white">
               <v-list-tile-action>
                 <v-icon>face</v-icon>
@@ -25,7 +23,7 @@
                   >
                   </input>
                 </template>
-                  <template v-else>{{ profile.name }}</template>
+                  <template v-else>{{ user.displayName || user.email.split("@")[0] }}</template>
                 </v-list-tile-title>
                 <v-list-tile-sub-title>
                   {{ profile.age }} ans
@@ -33,11 +31,7 @@
               </v-list-tile-content>
             </v-list-tile>
           </v-list-item>
-          <v-list-item
-            class="blue-grey lighten-4"
-            @click="editedIndex = editedIndex === 1 ? -1 : 1"
-            :class="{extended: (editedIndex === 1)}"
-          >
+          <v-list-item class="blue-grey lighten-4" @click="editedIndex = editedIndex === 1 ? -1 : 1" :class="{extended: (editedIndex === 1)}">
             <v-list-tile class="white">
               <v-list-tile-action>
                 <v-icon>school</v-icon>
@@ -59,11 +53,7 @@
               </v-list-tile-content>
             </v-list-tile>
           </v-list-item>
-          <v-list-item
-            class="blue-grey lighten-4"
-            @click="editedIndex = editedIndex === 2 ? -1 : 2"
-            :class="{extended: (editedIndex === 2)}"
-          >
+          <v-list-item class="blue-grey lighten-4" @click="editedIndex = editedIndex === 2 ? -1 : 2" :class="{extended: (editedIndex === 2)}">
             <v-list-tile class="white">
               <v-list-tile-action>
                 <v-icon>phone</v-icon>
@@ -89,7 +79,7 @@
               </v-list-tile-action>
               <v-list-tile-content>
                 <v-list-tile-title>
-                  {{ profile.email }}
+                  {{ user.email }}
                 </v-list-tile-title>
               </v-list-tile-content>
             </v-list-tile>
@@ -100,15 +90,9 @@
   </div>
 
 
-  <v-btn
-    v-if="editedIndex !== -1"
-    @click.native.stop="editedIndex = -1"
-    floating
-    large
-    class="animated xfast zoomIn delay1000 accent fab"
-  >
+  <v-btn v-if="editedIndex !== -1" @click.native.stop="editedIndex = -1" floating large class="animated xfast zoomIn delay1000 accent fab">
     <v-icon class="white--text">
-            done
+      done
     </v-icon>
   </v-btn>
 </div>
@@ -116,8 +100,13 @@
 </template>
 
 <script>
+import {
+  mapGetters
+} from 'vuex';
+
 export default {
   name: 'profile',
+
   data: () => ({
     isSaved: true,
     editedIndex: -1,
@@ -130,16 +119,20 @@ export default {
       email: 'thomas.sauvajon1@epsi.fr',
     },
   }),
+
+  computed: mapGetters({
+    user: 'user',
+  }),
 };
 </script>
 
 <style scoped>
-  .extended {
-    padding-top: 30px !important;
-    padding-bottom: 30px !important;
-  }
+.extended {
+  padding-top: 30px !important;
+  padding-bottom: 30px !important;
+}
 
-  .list__item {
-    transition: padding 0.2s;
-  }
+.list__item {
+  transition: padding 0.2s;
+}
 </style>
