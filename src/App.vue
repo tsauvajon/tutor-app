@@ -1,13 +1,13 @@
 <template>
 <v-app top-toolbar sidebar-under-toolbar fixed-left-sidebar>
   <v-toolbar fixed>
-    <v-toolbar-side-icon v-if="connected" @click.native.stop="sidebar = !sidebar" />
-    <v-toolbar-logo v-if="!connected">
+    <v-toolbar-side-icon @click.native.stop="sidebar = !sidebar" />
+    <v-toolbar-logo v-if="!user">
       Tutor'App
     </v-toolbar-logo>
-    <template v-if="isAdmin">
-      <v-toolbar-title v-if="connected" class="hidden-sm-and-down">Tutor'App</v-toolbar-title>
-      <v-toolbar-items v-if="connected">
+    <template v-if="user">
+      <v-toolbar-title class="hidden-sm-and-down">Tutor'App</v-toolbar-title>
+      <v-toolbar-items>
         <v-toolbar-item v-for="nav in navigation" :href="nav.href" router :key="nav.href.name">
           {{ nav.name }}
         </v-toolbar-item>
@@ -19,12 +19,29 @@
     </template>
   </v-toolbar>
   <main>
-    <v-sidebar left drawer v-model="sidebar" v-if="connected">
-      <v-list>
-        <v-subheader>Thomas Sauvajon</v-subheader>
+    <v-sidebar left drawer v-model="sidebar">
+      <v-list v-if="user">
+        <v-list-item>
+          <v-list-tile router href="profile">
+            <v-list-tile-avatar v-if="user.photoURL">
+              <img :src="user.photoURL"/>
+            </v-list-tile-avatar>
+            <v-list-tile-title>{{ user.displayName || user.email.split("@")[0] }}</v-list-tile-title>
+          </v-list-tile>
+        </v-list-item>
+        <v-subheader>{{ user.email }}</v-subheader>
+        <v-divider />
         <v-list-item v-for="item in sideMenuItems" :key="item.name">
           <v-list-tile router :href="item.href">
             <v-list-tile-title>{{ item.name }}</v-list-tile-title>
+          </v-list-tile>
+        </v-list-item>
+        <v-divider />
+        <v-list-item @click="logOut">
+          <v-list-tile>
+            <v-list-tile-title>
+              Se déconnecter
+            </v-list-tile-title>
           </v-list-tile>
         </v-list-item>
       </v-list>
@@ -32,12 +49,7 @@
     <v-content>
       <v-toolbar style="opacity: 0;" />
       <v-container fluid>
-        <template v-if="connected">
-          <router-view></router-view>
-        </template>
-        <template v-else>
-          <login></login>
-        </template>
+        <router-view></router-view>
       </v-container>
     </v-content>
   </main>
@@ -46,26 +58,45 @@
 
 <script>
 import {
-  mapGetters,
+  mapGetters
 } from 'vuex';
+import firebase from 'firebase';
+
 import {
   navigation,
   sideMenuItems,
-} from './assets/constants';
+} from './helpers/navigation';
 import Login from './components/Login';
 
 export default {
+  name: 'app',
+
   data: () => ({
     sidebar: false,
     navigation,
     sideMenuItems,
   }),
-  computed: {
-    ...mapGetters([
-      'connected',
-      'isAdmin',
-    ]),
+
+  computed:
+    mapGetters({
+      user: 'user',
+    }),
+
+  methods: {
+    logOut() {
+      firebase.auth().signOut().then(this.onSignOut, this.onError).catch(this.onError);
+    },
+
+    onSignOut() {
+      this.$router.push('/auth');
+    },
+
+    onError() {
+      console.log('onError');
+      this.$router.push('/auth');
+    }
   },
+
   components: {
     Login,
   }

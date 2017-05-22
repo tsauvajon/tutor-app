@@ -1,9 +1,10 @@
-export const sideMenuItems = [{
-    name: 'Profil',
-    href: {
-      name: 'profile',
-    },
-  },
+export const sideMenuItems = [
+  // {
+  //   name: 'Profil',
+  //   href: {
+  //     name: 'profile',
+  //   },
+  // },
   {
     name: 'Mes cours',
     href: {

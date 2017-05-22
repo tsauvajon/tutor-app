@@ -6,23 +6,33 @@ Vue.use(Vuex);
 const api = "http://";
 
 const state = {
-  connected: false,
-  isAdmin: true,
+  user: null,
+  fbApp: null,
+  fbUiApp: null,
 };
 
 const mutations = {
-  CONNECT(state) {
-    state.connected = true;
+  SET_USER(state, user) {
+    state.user = user;
+  },
+  SET_FB_APP(state, fbApp) {
+    state.fbApp = fbApp;
+  },
+  SET_FB_UI_APP(state, fbUiApp) {
+    state.fbUiApp = fbUiApp;
   },
 };
 
 const actions = {
-  connect: ({ commit }) => commit('CONNECT'),
+  setUser: ({ commit }, user) => commit('SET_USER', user),
+  setFbApp: ({ commit }, fbApp) => commit('SET_FB_APP', fbApp),
+  setFbUiApp: ({ commit }, fbUiApp) => commit('SET_FB_UI_APP', fbUiApp),
 };
 
 const getters = {
-  connected: state => state.connected,
-  isAdmin: state => state.isAdmin,
+  user: state => state.user,
+  fbApp: state => state.fbApp,
+  fbUiApp: state => state.fbUiApp,
 };
 
 export default new Vuex.Store({
