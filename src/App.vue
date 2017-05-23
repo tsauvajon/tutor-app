@@ -1,7 +1,7 @@
 <template>
 <v-app style="background: none;">
-  <v-navigation-drawer temporary v-model="sidebar">
-    <v-list v-if="user">
+  <v-navigation-drawer v-if="user" temporary v-model="sidebar">
+    <v-list>
       <v-list-item>
         <v-list-tile router href="profile">
           <v-list-tile-avatar v-if="user.photoURL">
@@ -28,7 +28,7 @@
     </v-list>
   </v-navigation-drawer>
   <v-toolbar fixed>
-    <v-toolbar-side-icon class="white--text" @click.native.stop="sidebar = !sidebar" />
+    <v-toolbar-side-icon v-if="user" class="white--text" @click.native.stop="sidebar = !sidebar" />
     <v-toolbar-logo v-if="!user">
       Tutor'App
     </v-toolbar-logo>
