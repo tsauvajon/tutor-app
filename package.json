@@ -9,32 +9,28 @@
     "deploy": "yarn build && firebase deploy"
   },
   "dependencies": {
-    "body-parser": "^1.17.2",
-    "cross-env": "^5.0.0",
-    "express": "^4.15.3",
-    "firebase": "^4.0.0",
-    "firebaseui": "^2.0.0",
-    "mongoose": "^4.10.0",
-    "vue-router": "^2.2.0",
-    "vue-server-renderer": "^2.1.10",
-    "vuefire": "^1.4.3",
-    "vuetify": "^0.12.1",
-    "vuex": "^2.3.1",
-    "vuex-router-sync": "^4.1.2"
-  },
-  "devDependencies": {
     "babel-preset-env": "^1.4.0",
     "babel-preset-stage-2": "^6.24.1",
     "buble": "^0.15.1",
     "buble-loader": "^0.4.0",
+    "cross-env": "^5.0.0",
     "css-loader": "^0.28.2",
     "file-loader": "^0.11.1",
+    "firebase": "^4.0.0",
+    "firebaseui": "^2.0.0",
     "style-loader": "^0.18.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
     "vue-loader": "^12.1.0",
+    "vue-router": "^2.2.0",
+    "vue-server-renderer": "^2.1.10",
     "vue-template-compiler": "^2.2.6",
-    "webpack": "^2.2.1",
+    "vuetify": "^0.12.1",
+    "vuex": "^2.3.1",
+    "vuex-router-sync": "^4.1.2",
+    "webpack": "^2.2.1"
+  },
+  "devDependencies": {
     "webpack-dev-server": "^2.2.0-rc.0"
   }
 }
