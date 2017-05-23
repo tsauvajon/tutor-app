@@ -14,4 +14,6 @@ script:
 
 after_success:
   - yarn global add firebase-tools
+  - echo $TEST
+  - echo ${TEST}
   - firebase deploy --token ${FIREBASE_TOKEN}
