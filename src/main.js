@@ -7,7 +7,7 @@ import firebaseui from 'firebaseui';
 import App from './App';
 import store from './vuex/store';
 import router from './router';
-import fbConfig from './private/.firebaserc';
+import fbConfig from './helpers/firebaseConfig';
 
 Vue.use(Vuetify);
 
