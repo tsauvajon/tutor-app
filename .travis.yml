@@ -12,6 +12,7 @@ env:
 script:
   - yarn build
   - yarn global add firebase-tools
-  - echo $TEST
-  - echo ${TEST}
+  - cd functions
+  - yarn
+  - cd ..
   - firebase deploy --token ${FIREBASE_TOKEN}
