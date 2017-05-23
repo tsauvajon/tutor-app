@@ -11,10 +11,7 @@ env:
 
 script:
   - yarn build
-
-after_success:
-  script:
-    - yarn global add firebase-tools
-    - echo $TEST
-    - echo ${TEST}
-    - firebase deploy --token ${FIREBASE_TOKEN}
+  - yarn global add firebase-tools
+  - echo $TEST
+  - echo ${TEST}
+  - firebase deploy --token ${FIREBASE_TOKEN}
