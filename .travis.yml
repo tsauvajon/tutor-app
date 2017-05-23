@@ -9,5 +9,16 @@ env:
     - CI: true
     - NODE_ENV: "production"
 
+before_script:
+  - yarn global add firebase-tools
+
 script:
   - yarn build
+
+after_success:
+  - firebase deploy --token $FIREBASE_TOKEN
+
+deploy:
+  provider: firebase
+  token:
+    secure: ""
