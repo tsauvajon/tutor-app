@@ -5,30 +5,27 @@
       Cours | [Filtrer]
     </v-card-row>
     <v-card-row>
-  <v-expansion-panel>
-    <v-expansion-panel-content v-for="cours in allcourses" :key="cours.id">
-      <div slot="header">
-        {{ cours.title }}
-      </div>
-      <v-card class="grey lighten-5">
-        <v-card-title>
-          <v-chip
-            v-for="(chip, i) in cours.chips"
-            :key="i"
-            class="accent white--text"
-            small
-          >
-            {{ chip }}
-          </v-chip>
-        </v-card-title>
-        <v-card-text>
-          {{ cours.desc }}
-        </v-card-text>
-      </v-card>
-    </v-expansion-panel-content>
-  </v-expansion-panel>
-  </v-card-row>
-</v-card>
+      <v-expansion-panel>
+        <v-expansion-panel-content v-for="cours in allcourses" :key="cours.id">
+          <div slot="header">
+            {{ cours.title }}
+          </div>
+          <v-card class="grey lighten-5">
+            <v-card-title>
+              <div class="row">
+                <v-chip v-for="(chip, i) in cours.chips" :key="i" class="accent white--text" small>
+                  {{ chip }}
+                </v-chip>
+              </div>
+            </v-card-title>
+            <v-card-text>
+              {{ cours.desc }}
+            </v-card-text>
+          </v-card>
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+    </v-card-row>
+  </v-card>
 </div>
 </template>
 

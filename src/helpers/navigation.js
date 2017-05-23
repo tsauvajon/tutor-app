@@ -23,12 +23,12 @@ export const sideMenuItems = [
       name: 'agenda',
     },
   },
-  {
-    name: 'Chat',
-    href: {
-      name: 'chat',
-    },
-  },
+  // {
+  //   name: 'Chat',
+  //   href: {
+  //     name: 'chat',
+  //   },
+  // },
 ];
 
 export const navigation = [{

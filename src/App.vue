@@ -17,6 +17,13 @@
           <v-list-tile-title>{{ item.name }}</v-list-tile-title>
         </v-list-tile>
       </v-list-item>
+      <v-list-item>
+        <v-list-tile :href="slack">
+          <v-list-tile-title>
+            Chat
+          </v-list-tile-title>
+        </v-list-tile>
+      </v-list-item>
       <v-divider />
       <v-list-item @click="logOut">
         <v-list-tile>
@@ -72,6 +79,7 @@ export default {
     sidebar: false,
     navigation,
     sideMenuItems,
+    slack: 'https://tutorapp-talk.slack.com',
   }),
 
   computed: mapGetters({
