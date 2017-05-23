@@ -1,18 +1,18 @@
 <template>
-<div>
+<div style="margin-top: 50px;">
   <div>
     <v-card hover raised class="ta-small-container animated fadeInUp xfast">
-      <v-card-row>
+      <!-- <v-card-row>
         <v-card-title class="secondary--text">
           <img style="border-radius: 5%;" :src="user.photoURL" height="100px" />
         </v-card-title>
-      </v-card-row>
+      </v-card-row> -->
       <v-card-row>
         <v-list two-line class="ta-inner-container">
           <v-list-item class="blue-grey lighten-4" @click="editedIndex = editedIndex === 0 ? -1 : 0" :class="{extended: (editedIndex === 0)}">
             <v-list-tile class="white">
               <v-list-tile-action>
-                <v-icon>face</v-icon>
+                <img style="border-radius: 50%;" :src="user.photoURL" height="32px" />
               </v-list-tile-action>
               <v-list-tile-content>
                 <v-list-tile-title>
@@ -25,9 +25,9 @@
                 </template>
                   <template v-else>{{ user.displayName || user.email.split("@")[0] }}</template>
                 </v-list-tile-title>
-                <v-list-tile-sub-title>
+                <!-- <v-list-tile-sub-title>
                   {{ profile.age }} ans
-                </v-list-tile-sub-title>
+                </v-list-tile-sub-title> -->
               </v-list-tile-content>
             </v-list-tile>
           </v-list-item>

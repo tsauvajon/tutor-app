@@ -1,7 +1,34 @@
 <template>
-<v-app top-toolbar sidebar-under-toolbar fixed-left-sidebar>
+<v-app style="background: none;">
+  <v-navigation-drawer temporary v-model="sidebar">
+    <v-list v-if="user">
+      <v-list-item>
+        <v-list-tile router href="profile">
+          <v-list-tile-avatar v-if="user.photoURL">
+            <img :src="user.photoURL" />
+          </v-list-tile-avatar>
+          <v-list-tile-title>{{ user.displayName || user.email.split("@")[0] }}</v-list-tile-title>
+        </v-list-tile>
+      </v-list-item>
+      <v-subheader>{{ user.email }}</v-subheader>
+      <v-divider />
+      <v-list-item v-for="item in sideMenuItems" :key="item.name">
+        <v-list-tile ripple router :href="item.href">
+          <v-list-tile-title>{{ item.name }}</v-list-tile-title>
+        </v-list-tile>
+      </v-list-item>
+      <v-divider />
+      <v-list-item @click="logOut">
+        <v-list-tile>
+          <v-list-tile-title>
+            Se déconnecter
+          </v-list-tile-title>
+        </v-list-tile>
+      </v-list-item>
+    </v-list>
+  </v-navigation-drawer>
   <v-toolbar fixed>
-    <v-toolbar-side-icon @click.native.stop="sidebar = !sidebar" />
+    <v-toolbar-side-icon class="white--text" @click.native.stop="sidebar = !sidebar" />
     <v-toolbar-logo v-if="!user">
       Tutor'App
     </v-toolbar-logo>
@@ -13,45 +40,15 @@
         </v-toolbar-item>
       </v-toolbar-items>
       <v-spacer />
-      <v-btn icon>
+      <v-btn icon class="white--text">
         <v-icon>search</v-icon>
       </v-btn>
     </template>
   </v-toolbar>
   <main>
-    <v-sidebar left drawer v-model="sidebar">
-      <v-list v-if="user">
-        <v-list-item>
-          <v-list-tile router href="profile">
-            <v-list-tile-avatar v-if="user.photoURL">
-              <img :src="user.photoURL"/>
-            </v-list-tile-avatar>
-            <v-list-tile-title>{{ user.displayName || user.email.split("@")[0] }}</v-list-tile-title>
-          </v-list-tile>
-        </v-list-item>
-        <v-subheader>{{ user.email }}</v-subheader>
-        <v-divider />
-        <v-list-item v-for="item in sideMenuItems" :key="item.name">
-          <v-list-tile ripple router :href="item.href">
-            <v-list-tile-title>{{ item.name }}</v-list-tile-title>
-          </v-list-tile>
-        </v-list-item>
-        <v-divider />
-        <v-list-item @click="logOut">
-          <v-list-tile>
-            <v-list-tile-title>
-              Se déconnecter
-            </v-list-tile-title>
-          </v-list-tile>
-        </v-list-item>
-      </v-list>
-    </v-sidebar>
-    <v-content>
-      <v-toolbar style="opacity: 0;" />
-      <v-container fluid>
-        <router-view></router-view>
-      </v-container>
-    </v-content>
+    <v-container fluid>
+      <router-view></router-view>
+    </v-container>
   </main>
 </v-app>
 </template>
@@ -77,10 +74,9 @@ export default {
     sideMenuItems,
   }),
 
-  computed:
-    mapGetters({
-      user: 'user',
-    }),
+  computed: mapGetters({
+    user: 'user',
+  }),
 
   methods: {
     logOut() {
