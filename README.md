@@ -34,7 +34,7 @@ const config = {
 export default config;
 ```
 
-``` base
+``` bash
 # prepare firebase
 yarn global add firebase-tools
 firebase login
