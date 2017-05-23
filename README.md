@@ -1,7 +1,8 @@
-# tutor-app
 [![Build Status](https://travis-ci.org/tsauvajon/tutor-app.svg?branch=master)](https://travis-ci.org/tsauvajon/tutor-app)
 
-> Tutoring app for schools
+# tutor-app
+
+Tutoring app for schools
 
 [demo](https://tutorapp-bdaa7.firebaseapp.com)
 
@@ -18,4 +19,28 @@ yarn dev
 yarn build
 ```
 
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+Create your firebase config file:
+```src/private/fbConfig.js```
+``` javascript
+const config = {
+  apiKey: '',
+  databaseURL: '',
+  storageBucket: '',
+  authDomain: '',
+  messagingSenderId: '',
+  projectId: '',
+};
+
+export default config;
+```
+
+``` bash
+# prepare firebase
+yarn global add firebase-tools
+firebase login
+firebase init
+
+# deploy
+yarn build
+firebase deploy
+```
