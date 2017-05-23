@@ -1,6 +1,9 @@
 # tutor-app
+[![Build Status](https://travis-ci.org/tsauvajon/tutor-app.svg?branch=master)](https://travis-ci.org/tsauvajon/tutor-app)
 
 > Tutoring app for schools
+
+[demo](https://tutorapp-bdaa7.firebaseapp.com)
 
 ## Build Setup
 
