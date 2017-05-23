@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+  - "6"
+
+cache: yarn
+
+env:
+  global:
+    - CI: true
+    - NODE_ENV: "production"
+
+script:
+  - yarn build
