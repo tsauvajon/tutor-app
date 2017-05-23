@@ -10,9 +10,9 @@ env:
     - NODE_ENV: "production"
 
 script:
-  - yarn build
   - yarn global add firebase-tools
   - cd functions
   - yarn
   - cd ..
-  - firebase deploy --token ${FIREBASE_TOKEN}
+  - yarn build
+  - firebase deploy --token ${FIREBASE_TOKEN} --public dist
