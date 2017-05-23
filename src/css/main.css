@@ -60,9 +60,23 @@
 
 .fab {
   position: fixed !important;
-  bottom: 20px;
-  right: 20px;
-  z-index: 4;
+  bottom: 23px;
+  right: 23px;
+  z-index: 4;;
+  padding-top: 15px;
+  animation: scale-delayed 1.5s
+}
+
+@keyframes scale-delayed {
+  from {
+    transform: scale(0);
+  }
+  85% {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
 }
 
 body {
