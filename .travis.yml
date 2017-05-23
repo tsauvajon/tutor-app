@@ -15,5 +15,5 @@ script:
   - yarn
   - cd ..
   - yarn build
-  - ls dist/
+  - cp public/* dist/
   - firebase deploy --token ${FIREBASE_TOKEN}
