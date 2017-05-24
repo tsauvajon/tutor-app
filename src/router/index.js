@@ -1,18 +1,17 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-import Home from '../components/Home';
-import Params from '../components/Admin/Params';
-import Users from '../components/Admin/Users';
-import Profile from '../components/Profile';
-import Courses from '../components/Courses';
-import Auth from '../components/Auth';
+import Home from '../components/Home.vue';
+import Params from '../components/Admin/Params.vue';
+import Users from '../components/Admin/Users.vue';
+import Profile from '../components/Profile.vue';
+import Courses from '../components/Courses.vue';
+import Auth from '../components/Auth.vue';
 import store from '../vuex/store';
 
 Vue.use(VueRouter);
 
 const checkFromAuth = (to, from, next) => {
-  console.log('window location search:', window.location.search);
   const query = window.location.search.substr(1).split('=');
   if (query[0] === 'mode') {
     next({

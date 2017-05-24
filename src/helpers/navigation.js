@@ -31,7 +31,8 @@ export const sideMenuItems = [
   // },
 ];
 
-export const navigation = [{
+export const navigation = [
+  {
     name: 'Utilisateurs',
     href: {
       name: 'users',

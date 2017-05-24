@@ -1,18 +1,17 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { firebaseMutations, firebaseAction } from 'vuexfire';
+// import { firebaseMutations, firebaseAction } from 'vuexfire';
 
 Vue.use(Vuex);
 
-const api = "http://";
-
-const state = {
+const initialState = {
   user: null,
   fbApp: null,
   fbUiApp: null,
   courses: null,
 };
 
+/* eslint-disable no-param-reassign */
 const mutations = {
   SET_USER(state, user) {
     state.user = user;
@@ -26,18 +25,19 @@ const mutations = {
     state.fbUiApp = fbUiApp;
   },
 
-  ...firebaseMutations,
+  // ...firebaseMutations,
 };
+/* eslint-enable*/
 
 const actions = {
   setUser: ({ commit }, user) => commit('SET_USER', user),
   setFbApp: ({ commit }, fbApp) => commit('SET_FB_APP', fbApp),
   setFbUiApp: ({ commit }, fbUiApp) => commit('SET_FB_UI_APP', fbUiApp),
-  setCoursesRef: firebaseAction(({
-    bindFirebaseRef,
-  }, ref) => {
-    bindFirebaseRef('courses', ref);
-  }),
+  // setCoursesRef: firebaseAction(({
+  //   bindFirebaseRef,
+  // }, ref) => {
+  //   bindFirebaseRef('courses', ref);
+  // }),
 };
 
 const getters = {
@@ -48,7 +48,7 @@ const getters = {
 };
 
 export default new Vuex.Store({
-  state,
+  initialState,
   mutations,
   actions,
   getters,
