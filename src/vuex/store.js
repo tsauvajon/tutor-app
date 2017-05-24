@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-// import { firebaseMutations, firebaseAction } from 'vuexfire';
+import { firebaseMutations, firebaseAction } from 'vuexfire';
 
 Vue.use(Vuex);
 
@@ -25,7 +25,7 @@ const mutations = {
     state.fbUiApp = fbUiApp;
   },
 
-  // ...firebaseMutations,
+  ...firebaseMutations,
 };
 /* eslint-enable*/
 
@@ -33,11 +33,11 @@ const actions = {
   setUser: ({ commit }, user) => commit('SET_USER', user),
   setFbApp: ({ commit }, fbApp) => commit('SET_FB_APP', fbApp),
   setFbUiApp: ({ commit }, fbUiApp) => commit('SET_FB_UI_APP', fbUiApp),
-  // setCoursesRef: firebaseAction(({
-  //   bindFirebaseRef,
-  // }, ref) => {
-  //   bindFirebaseRef('courses', ref);
-  // }),
+  setCoursesRef: firebaseAction(({
+    bindFirebaseRef,
+  }, ref) => {
+    bindFirebaseRef('courses', ref);
+  }),
 };
 
 const getters = {
