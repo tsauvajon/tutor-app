@@ -1,7 +1,7 @@
 import firebase from 'firebase';
 import 'firebase/auth';
 
-import fbConfig from '../private/.firebaserc';
+import fbConfig from '../helpers/firebaseConfig';
 
 const fbInit = (func) => {
   firebase.initializeApp(fbConfig);
@@ -12,7 +12,8 @@ const fbInit = (func) => {
     } else {
       func(false);
     }
-  }, (err) => console.log(err));
+    /* eslint-disable no-console */
+  }, err => console.log(err));
 };
 
 export default fbInit;

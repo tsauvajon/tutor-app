@@ -61,16 +61,10 @@
 </template>
 
 <script>
-import {
-  mapGetters
-} from 'vuex';
+import { mapGetters } from 'vuex';
 import firebase from 'firebase';
 
-import {
-  navigation,
-  sideMenuItems,
-} from './helpers/navigation';
-import Login from './components/Login';
+import { navigation, sideMenuItems } from './helpers/navigation';
 
 export default {
   name: 'app',
@@ -92,19 +86,15 @@ export default {
     },
 
     onSignOut() {
-      console.log('onSignOut');
+      // console.log('onSignOut');
       this.$router.push('/auth');
     },
 
     onError() {
-      console.log('onError');
+      // console.log('onError');
       this.$router.push('/auth');
-    }
+    },
   },
-
-  components: {
-    Login,
-  }
 };
 </script>
 
