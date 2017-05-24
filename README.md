@@ -14,33 +14,20 @@ yarn
 
 # serve with hot reload at localhost:8080
 yarn dev
-
-# build for production with minification
-yarn build
-```
-
-Create your firebase config file:
-```src/private/fbConfig.js```
-``` javascript
-const config = {
-  apiKey: '',
-  databaseURL: '',
-  storageBucket: '',
-  authDomain: '',
-  messagingSenderId: '',
-  projectId: '',
-};
-
-export default config;
 ```
 
 ``` bash
 # prepare firebase
+# install the firebase cli
 yarn global add firebase-tools
+# login into firebase
 firebase login
+# initialize firebase in the repository
 firebase init
 
 # deploy
+# build for production with minification
 yarn build
+# deploy to firebase hosting
 firebase deploy
 ```
