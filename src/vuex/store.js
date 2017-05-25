@@ -48,7 +48,7 @@ const getters = {
 };
 
 export default new Vuex.Store({
-  initialState,
+  state: initialState,
   mutations,
   actions,
   getters,

@@ -20,9 +20,7 @@ new Vue({
   created() {
     const fbApp = firebase.initializeApp(fbConfig);
     const fbUiApp = new firebaseui.auth.AuthUI(firebase.auth(fbApp));
-    firebase.auth().onAuthStateChanged((user) =>
-      store.dispatch('setUser', user)
-    );
+    firebase.auth().onAuthStateChanged(user => store.dispatch('setUser', user));
     store.dispatch('setFbApp', fbApp);
     store.dispatch('setFbUiApp', fbUiApp);
   },
