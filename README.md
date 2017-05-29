@@ -12,6 +12,12 @@ Tutoring app for schools
 # install dependencies
 yarn
 
+# test with hot reloading
+yarn test:dev
+
+# lint your code
+yarn lint
+
 # serve with hot reload at localhost:8080
 yarn dev
 ```
@@ -24,10 +30,4 @@ yarn global add firebase-tools
 firebase login
 # initialize firebase in the repository
 firebase init
-
-# deploy
-# build for production with minification
-yarn build
-# deploy to firebase hosting
-firebase deploy
 ```
