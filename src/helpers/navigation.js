@@ -1,16 +1,4 @@
 export const sideMenuItems = [
-  // {
-  //   name: 'Profil',
-  //   href: {
-  //     name: 'profile',
-  //   },
-  // },
-  // {
-  //   name: 'Mes cours',
-  //   href: {
-  //     name: 'mycourses',
-  //   },
-  // },
   {
     name: 'Cours',
     href: {
@@ -23,12 +11,6 @@ export const sideMenuItems = [
       name: 'agenda',
     },
   },
-  // {
-  //   name: 'Chat',
-  //   href: {
-  //     name: 'chat',
-  //   },
-  // },
 ];
 
 export const navigation = [

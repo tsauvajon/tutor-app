@@ -9,6 +9,7 @@ const initialState = {
   fbApp: null,
   fbUiApp: null,
   courses: null,
+  pageTitle: "Tutor'App",
 };
 
 /* eslint-disable no-param-reassign */
@@ -25,6 +26,10 @@ const mutations = {
     state.fbUiApp = fbUiApp;
   },
 
+  SET_PAGE_TITLE(state, title) {
+    state.pageTitle = title;
+  },
+
   ...firebaseMutations,
 };
 /* eslint-enable*/
@@ -33,6 +38,7 @@ const actions = {
   setUser: ({ commit }, user) => commit('SET_USER', user),
   setFbApp: ({ commit }, fbApp) => commit('SET_FB_APP', fbApp),
   setFbUiApp: ({ commit }, fbUiApp) => commit('SET_FB_UI_APP', fbUiApp),
+  setPageTitle: ({ commit }, title) => commit('SET_PAGE_TITLE', title),
   setCoursesRef: firebaseAction(({
     bindFirebaseRef,
   }, ref) => {
@@ -44,6 +50,7 @@ const getters = {
   user: state => state.user,
   fbApp: state => state.fbApp,
   fbUiApp: state => state.fbUiApp,
+  pageTitle: state => state.pageTitle,
   courses: state => state.courses,
 };
 

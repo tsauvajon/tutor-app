@@ -1,17 +1,19 @@
 <template>
 <v-app style="background: none;">
   <v-navigation-drawer v-if="user" temporary v-model="sidebar">
-    <v-list>
+    <v-list style="padding-top: 10px" class="grey lighten-3">
       <v-list-item>
         <v-list-tile router href="profile">
           <v-list-tile-avatar v-if="user.photoURL">
             <img :src="user.photoURL" />
           </v-list-tile-avatar>
-          <v-list-tile-title>{{ user.displayName || user.email.split("@")[0] }}</v-list-tile-title>
+          <v-list-tile-title class="secondary--text">{{ user.displayName || user.email.split("@")[0] }}</v-list-tile-title>
         </v-list-tile>
       </v-list-item>
-      <v-subheader>{{ user.email }}</v-subheader>
-      <v-divider />
+      <v-subheader class="grey lighten-3 secondary--text">{{ user.email }}</v-subheader>
+    </v-list>
+    <v-list subheader>
+      <v-subheader>Tutorat</v-subheader>
       <v-list-item v-for="item in sideMenuItems" :key="item.name">
         <v-list-tile ripple router :href="item.href">
           <v-list-tile-title>{{ item.name }}</v-list-tile-title>
@@ -24,7 +26,24 @@
           </v-list-tile-title>
         </v-list-tile>
       </v-list-item>
+      <template v-if="user">
+        <v-divider />
+        <v-subheader>Administration</v-subheader>
+        <v-list-item v-for="item in navigation" :key="item.name">
+          <v-list-tile ripple router :href="item.href">
+            <v-list-tile-title>{{ item.name }}</v-list-tile-title>
+          </v-list-tile>
+        </v-list-item>
+      </template>
       <v-divider />
+      <v-subheader>Compte</v-subheader>
+      <v-list-item>
+        <v-list-tile router href="profile">
+          <v-list-tile-title>
+            Mon profil
+          </v-list-tile-title>
+        </v-list-tile>
+      </v-list-item>
       <v-list-item @click="logOut">
         <v-list-tile>
           <v-list-tile-title>
@@ -40,12 +59,7 @@
       Tutor'App
     </v-toolbar-logo>
     <template v-if="user">
-      <v-toolbar-title class="hidden-sm-and-down">Tutor'App</v-toolbar-title>
-      <v-toolbar-items>
-        <v-toolbar-item v-for="nav in navigation" :href="nav.href" router :key="nav.href.name">
-          {{ nav.name }}
-        </v-toolbar-item>
-      </v-toolbar-items>
+      <v-toolbar-title>{{ pageTitle }}</v-toolbar-title>
       <v-spacer />
       <v-btn icon class="white--text">
         <v-icon>search</v-icon>
@@ -76,9 +90,10 @@ export default {
     slack: 'https://tutorapp-talk.slack.com',
   }),
 
-  computed: mapGetters({
-    user: 'user',
-  }),
+  computed: mapGetters([
+    'user',
+    'pageTitle',
+  ]),
 
   methods: {
     logOut() {

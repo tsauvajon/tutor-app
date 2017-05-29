@@ -28,11 +28,11 @@ describe('actions and getters', () => {
 
 describe('mock database', () => {
   /* eslint-disable no-new */
-  new FirebaseServer(5754, '127.0.0.1', {
-    courses: {
-      a: { title: 'test', chips: ['test'] },
-      b: { title: 'testb' },
-      c: { title: 'testc' },
-    },
-  });
+  // new FirebaseServer(5754, '127.0.0.1', {
+  //   courses: {
+  //     a: { title: 'test', chips: ['test'] },
+  //     b: { title: 'testb' },
+  //     c: { title: 'testc' },
+  //   },
+  // });
 });

@@ -30,7 +30,12 @@
       </div>
     </v-card-title>
   </v-card>
-  <v-expansion-panel style="margin-top: 15px;">
+  <v-card style="margin-top: 15px;" v-if="!filtered.length">
+    <v-card-text>
+      Rien à afficher !
+    </v-card-text>
+  </v-card>
+  <v-expansion-panel style="margin-top: 15px;" v-else>
     <v-expansion-panel-content v-if="course.title" v-for="course in filtered" :key="course.createdat">
       <div slot="header">
         {{ course.title }}
