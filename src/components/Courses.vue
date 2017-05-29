@@ -45,7 +45,12 @@
     </v-card-text>
   </v-card>
   <v-expansion-panel style="margin-top: 15px;" v-else>
-    <v-expansion-panel-content v-if="course.title" v-for="course in filtered" :key="course.createdat">
+    <v-expansion-panel-content
+      class="animated fadeInUp xfast"
+      v-if="course.title"
+      v-for="course in filtered"
+      :key="course.createdat"
+    >
       <div slot="header">
         {{ course.title }}
       </div>

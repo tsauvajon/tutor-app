@@ -2,7 +2,9 @@
 <div>
   <v-card>
     <v-card-title>Utilisateurs</v-card-title>
-    <v-card-text>A faire : stocker les informations des utilisateurs dans la db</v-card-text>
+    <v-card-text>A faire :<br>
+      - stocker les informations des utilisateurs dans la db<br>
+      - gérer les droits des utilisateurs</v-card-text>
   </v-card>
   <!-- <v-list>
     <v-list-item>
