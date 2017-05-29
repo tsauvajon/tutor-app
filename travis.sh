@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ $TRAVIS_BRANCH == 'release' ]]
+if [[ $TRAVIS_PULL_REQUEST = "false" ]]
   - yarn global add firebase-tools
   - cd functions
   - yarn
