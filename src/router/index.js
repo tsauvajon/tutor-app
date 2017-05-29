@@ -7,7 +7,6 @@ import Users from '../components/Admin/Users.vue';
 import Profile from '../components/Profile.vue';
 import Courses from '../components/Courses.vue';
 import Auth from '../components/Auth.vue';
-import store from '../vuex/store';
 
 Vue.use(VueRouter);
 
@@ -71,15 +70,6 @@ const router = new VueRouter({
       component: Home,
     },
   ],
-});
-
-// Avant chaque redirection, vérifie si l'utilisateur est log
-router.beforeEach((to, from, next) => {
-  if (to.path !== '/auth' && !store.getters.user) {
-    next('/auth');
-  } else {
-    next();
-  }
 });
 
 export default router;

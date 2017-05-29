@@ -82,6 +82,7 @@ export default {
 
   methods: {
     logOut() {
+      this.sidebar = false;
       firebase.auth().signOut().then(this.onSignOut, this.onError).catch(this.onError);
     },
 
