@@ -22,8 +22,8 @@ yarn lint
 yarn dev
 ```
 
+## Prepare Firebase
 ``` bash
-# prepare firebase
 # install the firebase cli
 yarn global add firebase-tools
 # login into firebase
