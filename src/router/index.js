@@ -8,6 +8,7 @@ import Profile from '../components/Profile.vue';
 import Courses from '../components/Courses.vue';
 import Agenda from '../components/Agenda.vue';
 import Auth from '../components/Auth.vue';
+import store from '../vuex/store';
 
 Vue.use(VueRouter);
 
@@ -71,6 +72,25 @@ const router = new VueRouter({
       component: Home,
     },
   ],
+});
+
+router.beforeEach((from, to, next) => {
+  switch (from.name) {
+    case 'profile':
+      store.dispatch('setPageTitle', 'Profil');
+      break;
+    case 'courses':
+      store.dispatch('setPageTitle', 'Cours');
+      break;
+    case 'planning':
+    case 'agenda':
+      store.dispatch('setPageTitle', 'Planning');
+      break;
+    default:
+      store.dispatch('setPageTitle', "Tutor'App");
+      break;
+  }
+  next();
 });
 
 export default router;

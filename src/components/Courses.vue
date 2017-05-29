@@ -30,7 +30,16 @@
       </div>
     </v-card-title>
   </v-card>
-  <v-card style="margin-top: 15px;" v-if="!filtered.length">
+
+  <v-card style="margin-top: 15px;" v-if="!filtered || filtered === null">
+    <v-card-text>
+      <v-progress-linear
+        indeterminate
+        class="primary--text"
+      />
+    </v-card-text>
+  </v-card>
+  <v-card style="margin-top: 15px;" v-else-if="!filtered.length">
     <v-card-text>
       Rien à afficher !
     </v-card-text>
