@@ -13,13 +13,7 @@ branches:
   only:
   - master
 
-script:
-  - yarn global add firebase-tools
-  - cd functions
-  - yarn
-  - cd ..
-  - yarn lint
-  - yarn test
-  - yarn build
-  - cp public/* dist
-  - firebase deploy --token ${FIREBASE_TOKEN}
+before_script:
+  - chmod +x travis.sh
+
+script: ./travis.sh
