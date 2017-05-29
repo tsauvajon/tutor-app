@@ -6,6 +6,19 @@ Tutoring app for schools
 
 [demo](https://tutorapp-bdaa7.firebaseapp.com)
 
+
+## Prepare Firebase
+``` bash
+# install the firebase cli
+yarn global add firebase-tools
+
+# login into firebase
+firebase login
+
+# initialize firebase in the repository
+firebase init
+```
+
 ## Build Setup
 
 ``` bash
@@ -20,14 +33,4 @@ yarn lint
 
 # serve with hot reload at localhost:8080
 yarn dev
-```
-
-## Prepare Firebase
-``` bash
-# install the firebase cli
-yarn global add firebase-tools
-# login into firebase
-firebase login
-# initialize firebase in the repository
-firebase init
 ```
