@@ -50,11 +50,6 @@
       </v-card>
     </v-expansion-panel-content>
   </v-expansion-panel>
-  <!-- </v-card-row>
-  </v-card> -->
-  <!-- <pre v-for="key in Object.keys(courses)">
-    {{ courses[key] }}
-  </pre> -->
   <v-btn primary floating large light class="fab">
     <v-icon class="white--text">add</v-icon>
   </v-btn>
@@ -74,41 +69,5 @@ export default {
   },
 
   computed: mapGetters(['courses']),
-
-  // computed()
-
-  // data: () => ({
-  //   allcourses: [{
-  //       id: 0,
-  //       title: 'Initiation à React',
-  //       desc: 'un cours sur React',
-  //       chips: [
-  //         'javascript',
-  //         'développement',
-  //         'front-end',
-  //       ],
-  //     },
-  //     {
-  //       id: 1,
-  //       title: 'Démarrer avec Vue',
-  //       desc: 'un cours sur Vue',
-  //       chips: [
-  //         'javascript',
-  //         'développement',
-  //         'front-end',
-  //       ],
-  //     },
-  //     {
-  //       id: 2,
-  //       title: 'Réviser l\'IPI',
-  //       desc: 'révisions de l\'IPI',
-  //       chips: [
-  //         'réseau',
-  //         'révisions',
-  //       ],
-  //     },
-  //   ],
-  // }),
-
 };
 </script>

@@ -25,9 +25,6 @@
                 </template>
                   <template v-else>{{ user.displayName || user.email.split("@")[0] }}</template>
                 </v-list-tile-title>
-                <!-- <v-list-tile-sub-title>
-                  {{ profile.age }} ans
-                </v-list-tile-sub-title> -->
               </v-list-tile-content>
             </v-list-tile>
           </v-list-item>

@@ -7,6 +7,7 @@
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --inline --hot --port=8082 --host=localhost",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
     "deploy": "yarn build && firebase deploy",
+    "test": "jest",
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
   "dependencies": {
@@ -27,6 +28,7 @@
     "file-loader": "^0.11.1",
     "firebase": "^4.0.0",
     "firebaseui": "^2.0.0",
+    "jest": "^20.0.4",
     "style-loader": "^0.18.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
