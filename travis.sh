@@ -1,6 +1,7 @@
 #!/bin/bash
 
-if [ $TRAVIS_PULL_REQUEST = "false" ];
+if [ $TRAVIS_PULL_REQUEST = "false" ]
+then
   yarn global add firebase-tools;
   cd functions;
   yarn;
