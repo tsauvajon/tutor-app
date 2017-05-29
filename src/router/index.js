@@ -6,6 +6,7 @@ import Params from '../components/Admin/Params.vue';
 import Users from '../components/Admin/Users.vue';
 import Profile from '../components/Profile.vue';
 import Courses from '../components/Courses.vue';
+import Agenda from '../components/Agenda.vue';
 import Auth from '../components/Auth.vue';
 
 Vue.use(VueRouter);
@@ -62,7 +63,7 @@ const router = new VueRouter({
     {
       path: '/agenda',
       name: 'agenda',
-      component: Home,
+      component: Agenda,
     },
     {
       path: '/chat',

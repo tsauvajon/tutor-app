@@ -2,7 +2,7 @@
 <div>
   <v-card>
     <v-card-title>
-      Cours
+      {{ title }}
       <v-spacer />
       <div>
         <v-menu bottom left origin="top right">
@@ -10,19 +10,19 @@
             <v-icon>filter_list</v-icon>
           </v-btn>
           <v-list>
-            <v-list-item>
+            <v-list-item @click="filter = 'all'">
               <v-list-tile>
-                <v-list-tile-title>Filtre 1</v-list-tile-title>
+                <v-list-tile-title>Tous les cours</v-list-tile-title>
               </v-list-tile>
             </v-list-item>
-            <v-list-item>
+            <v-list-item @click="filter = 'subscribed'">
               <v-list-tile>
-                <v-list-tile-title>Filtre 2</v-list-tile-title>
+                <v-list-tile-title>Mes inscriptions</v-list-tile-title>
               </v-list-tile>
             </v-list-item>
-            <v-list-item>
+            <v-list-item @click="filter = 'mine'">
               <v-list-tile>
-                <v-list-tile-title>Filtre 3</v-list-tile-title>
+                <v-list-tile-title>Mes cours</v-list-tile-title>
               </v-list-tile>
             </v-list-item>
           </v-list>
@@ -30,8 +30,8 @@
       </div>
     </v-card-title>
   </v-card>
-  <v-expansion-panel>
-    <v-expansion-panel-content v-if="course.title" v-for="course in courses" :key="course.createdat">
+  <v-expansion-panel style="margin-top: 15px;">
+    <v-expansion-panel-content v-if="course.title" v-for="course in filtered" :key="course.createdat">
       <div slot="header">
         {{ course.title }}
       </div>
@@ -62,12 +62,49 @@ import { mapGetters } from 'vuex';
 export default {
   name: 'courses',
 
+  data: () => ({
+    filter: 'all',
+  }),
+
   created() {
     const database = this.$store.getters.fbApp.database();
     const coursesRef = database.ref('courses');
     this.$store.dispatch('setCoursesRef', coursesRef);
   },
 
-  computed: mapGetters(['courses']),
+  computed: {
+    ...mapGetters(['courses', 'user']),
+
+    filtered() {
+      try {
+        const values = Object.values(this.$store.getters.courses)
+          .filter(c => c.createdAt);
+        switch (this.filter) {
+          case 'mine':
+            return values.filter(c => c.creator === this.$store.getters.user.uid)
+            break;
+          case 'subscribed':
+            // TODO
+            return [];
+          default:
+            return values;
+        }
+      } catch (e) {
+        return this.courses;
+      }
+    },
+
+    title() {
+      switch (this.filter) {
+        case 'mine':
+          return 'Mes cours';
+        case 'subscribed':
+          return 'Mes inscriptions';
+        default:
+          return 'Tous les cours';
+
+      }
+    }
+  },
 };
 </script>

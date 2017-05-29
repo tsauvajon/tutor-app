@@ -14,9 +14,13 @@ Vue.use(Vuetify);
 /* eslint-disable no-new */
 new Vue({
   store,
+
   router,
+
   el: '#app',
+
   render: h => h(App),
+
   created() {
     const fbApp = firebase.initializeApp(fbConfig);
     const fbUiApp = new firebaseui.auth.AuthUI(firebase.auth(fbApp));
@@ -24,6 +28,7 @@ new Vue({
     store.dispatch('setFbApp', fbApp);
     store.dispatch('setFbUiApp', fbUiApp);
   },
+
   components: {
     App,
   },

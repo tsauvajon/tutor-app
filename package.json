@@ -8,6 +8,7 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
     "deploy": "yarn build && firebase deploy",
     "test": "jest",
+    "test:dev": "jest --watch",
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
   "dependencies": {
@@ -27,6 +28,7 @@
     "eslint-plugin-import": "^2.2.0",
     "file-loader": "^0.11.1",
     "firebase": "^4.0.0",
+    "firebase-server": "^0.10.1",
     "firebaseui": "^2.0.0",
     "jest": "^20.0.4",
     "style-loader": "^0.18.0",

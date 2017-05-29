@@ -5,14 +5,14 @@ export const sideMenuItems = [
   //     name: 'profile',
   //   },
   // },
+  // {
+  //   name: 'Mes cours',
+  //   href: {
+  //     name: 'mycourses',
+  //   },
+  // },
   {
-    name: 'Mes cours',
-    href: {
-      name: 'mycourses',
-    },
-  },
-  {
-    name: 'Tous les cours',
+    name: 'Cours',
     href: {
       name: 'courses',
     },
