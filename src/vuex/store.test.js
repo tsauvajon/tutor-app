@@ -1,5 +1,5 @@
 import firebase from 'firebase';
-import FirebaseServer from 'firebase-server';
+// import FirebaseServer from 'firebase-server';
 import 'firebase/auth';
 
 import store from './store';
