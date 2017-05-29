@@ -81,8 +81,7 @@ export default {
           .filter(c => c.createdAt);
         switch (this.filter) {
           case 'mine':
-            return values.filter(c => c.creator === this.$store.getters.user.uid)
-            break;
+            return values.filter(c => c.creator === this.$store.getters.user.uid);
           case 'subscribed':
             // TODO
             return [];
@@ -102,9 +101,8 @@ export default {
           return 'Mes inscriptions';
         default:
           return 'Tous les cours';
-
       }
-    }
+    },
   },
 };
 </script>
