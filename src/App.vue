@@ -90,7 +90,7 @@
   <main>
     <v-container fluid>
       <router-view></router-view>
-      <AdSense ad-client="ca-pub-8898907085286992" ad-slot="8385775230" ad-style="display: block" ad-format="auto"></AdSense>
+      <AdSense style="margin-top: 20px;" ad-client="ca-pub-8898907085286992" ad-slot="8385775230" ad-style="display: block" ad-format="auto"></AdSense>
     </v-container>
   </main>
   <v-footer>
