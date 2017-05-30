@@ -94,7 +94,10 @@
     </v-container>
   </main>
   <v-footer>
-    <v-btn class="white--text" flat href="https://github.com/tsauvajon/tutor-app">GitHub</v-btn>
+    <v-btn class="white--text" flat href="https://github.com/tsauvajon/tutor-app">
+      GitHub
+      <v-icon right class="white--text" fa>github</v-icon>
+    </v-btn>
   </v-footer>
 </v-app>
 </template>
