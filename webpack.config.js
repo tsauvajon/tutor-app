@@ -1,5 +1,5 @@
-const path = require('path')
-const webpack = require('webpack')
+const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   entry: './src/main.js',
@@ -16,53 +16,52 @@ module.exports = {
   },
   module: {
     rules: [{
-        test: /\.vue$/,
-        loader: 'vue-loader',
-        options: {
-          buble: {
-            objectAssign: 'Object.assign',
-          }
-        }
+      test: /\.vue$/,
+      loader: 'vue-loader',
+      options: {
+        buble: {
+          objectAssign: 'Object.assign',
+        },
       },
-      {
-        test: /\.js$/,
-        loader: 'buble-loader',
-        exclude: /node_modules/,
-        options: {
-          objectAssign: 'Object.assign'
-        }
+    },
+    {
+      test: /\.js$/,
+      loader: 'buble-loader',
+      exclude: /node_modules/,
+      options: {
+        objectAssign: 'Object.assign',
       },
-      {
-        test: /\.styl$/,
-        loader: ['style-loader', 'css-loader', 'stylus-loader']
-      }
-    ]
+    },
+    {
+      test: /\.styl$/,
+      loader: ['style-loader', 'css-loader', 'stylus-loader'],
+    }],
   },
   devServer: {
     historyApiFallback: true,
-    noInfo: true
+    noInfo: true,
   },
   devtool: '#eval-source-map',
-  performance: false
-}
+  performance: false,
+};
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports.devtool = '#source-map'
+  module.exports.devtool = '#source-map';
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || [])
     .concat([
       new webpack.DefinePlugin({
         'process.env': {
-          NODE_ENV: '"production"'
-        }
+          NODE_ENV: '"production"',
+        },
       }),
       new webpack.optimize.UglifyJsPlugin({
         compress: {
-          warnings: false
-        }
+          warnings: false,
+        },
       }),
       new webpack.LoaderOptionsPlugin({
-        minimize: true
-      })
-    ])
+        minimize: true,
+      }),
+    ]);
 }
