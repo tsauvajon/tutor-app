@@ -71,6 +71,12 @@ router.beforeEach((from, to, next) => {
     case 'courses':
       store.dispatch('setPageTitle', 'Cours');
       break;
+    case 'users':
+      store.dispatch('setPageTitle', 'Utilisateurs');
+      break;
+    case 'params':
+      store.dispatch('setPageTitle', 'Paramètres');
+      break;
     case 'planning':
     case 'agenda':
       store.dispatch('setPageTitle', 'Planning');

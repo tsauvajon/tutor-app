@@ -87,7 +87,7 @@
     <v-toolbar-logo v-if="!user">
       Tutor'App
     </v-toolbar-logo>
-    <template v-if="user">
+    <template v-else>
       <v-toolbar-title>{{ pageTitle }}</v-toolbar-title>
       <v-spacer />
       <v-btn icon class="white--text">

@@ -1,13 +1,13 @@
 <template>
 <div>
-  <v-card>
+  <v-card flat class="secondary white--text">
     <v-card-title>
       {{ title }}
       <v-spacer />
       <div>
         <v-menu bottom left origin="top right">
           <v-btn icon="icon" slot="activator" class="">
-            <v-icon>filter_list</v-icon>
+            <v-icon class="white--text">filter_list</v-icon>
           </v-btn>
           <v-list>
             <v-list-item @click="filter = 'all'">
@@ -31,7 +31,7 @@
     </v-card-title>
   </v-card>
 
-  <v-card style="margin-top: 15px;" v-if="!filtered || filtered === null">
+  <v-card hover style="margin-top: 15px;" v-if="!filtered || filtered === null">
     <v-card-text>
       <v-progress-linear
         indeterminate
@@ -39,12 +39,53 @@
       />
     </v-card-text>
   </v-card>
-  <v-card style="margin-top: 15px;" v-else-if="!filtered.length">
+  <v-card hover style="margin-top: 15px;" v-else-if="!filtered.length">
     <v-card-text>
       Rien à afficher !
     </v-card-text>
   </v-card>
-  <v-expansion-panel style="margin-top: 15px;" v-else>
+  <v-layout row wrap v-else style="margin-bottom: 75px;">
+    <v-flex
+      style="margin-top: 15px; "
+      xs12 sm12 md6 lg4 xl3
+      v-for="course in filtered"
+      :key="course.createdat"
+    >
+      <v-card hover>
+        <v-card-title class="secondary--text">
+          {{ course.title }}
+      </v-card-title>
+      <v-card-row v-if="course.chips && course.chips.length">
+        <v-chip
+          v-for="(chip, i) in course.chips"
+          :key="i"
+          class="accent white--text"
+          small
+        >
+          {{ chip }}
+        </v-chip>
+      </v-card-row>
+      <v-card-text>
+        {{ course.description }}
+      </v-card-text>
+      <v-divider></v-divider>
+      <v-card-row actions>
+        <template v-if="course.creator === user.uid">
+        <v-btn flat class="accent--text">
+          Supprimer
+        </v-btn>
+        <v-btn flat class="accent--text">
+          Editer
+        </v-btn>
+        </template>
+        <v-btn v-else flat class="accent--text">
+          S'inscrire
+        </v-btn>
+      </v-card-row>
+      </v-card>
+    </v-flex>
+  </v-layout>
+  <!-- <v-expansion-panel style="margin-top: 15px;" v-else>
     <v-expansion-panel-content
       class="animated fadeInUp xfast"
       v-if="course.title"
@@ -73,7 +114,7 @@
         </v-card-text>
       </v-card>
     </v-expansion-panel-content>
-  </v-expansion-panel>
+  </v-expansion-panel> -->
   <v-btn floating large light class="fab accent">
     <v-icon class="white--text">add</v-icon>
   </v-btn>
@@ -101,7 +142,7 @@ export default {
 
     filtered() {
       try {
-        const values = Object.values(this.$store.getters.courses)
+        const values = Object.values(this.courses)
           .filter(c => c.createdAt);
         switch (this.filter) {
           case 'mine':

@@ -1,5 +1,17 @@
 <template>
 <div>
+  <v-card style="margin-bottom: 10px;">
+    <v-card-row>
+      <v-text-field
+        autofocus
+        style="margin-left: 5px; margin-right: 5px;"
+        name="user-search"
+        label="Rechercher un utilisateur"
+        single-line
+        append-icon="filter_list"
+      />
+    </v-card-row>
+  </v-card>
   <v-card>
     <v-card-title>Utilisateurs</v-card-title>
     <v-card-text>A faire :<br>
