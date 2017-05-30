@@ -22,12 +22,18 @@
                   >
                   </input>
                 </template>
-                  <template v-else>{{ user.displayName || user.email.split("@")[0] }}</template>
+                  <template v-else>
+                    {{ user.displayName || user.email.split("@")[0] }}
+                  </template>
                 </v-list-tile-title>
               </v-list-tile-content>
             </v-list-tile>
           </v-list-item>
-          <v-list-item class="blue-grey lighten-4" @click="editedIndex = editedIndex === 1 ? -1 : 1" :class="{extended: (editedIndex === 1)}">
+          <v-list-item
+            class="blue-grey lighten-4"
+            @click="editedIndex = editedIndex === 1 ? -1 : 1"
+            :class="{extended: (editedIndex === 1)}"
+          >
             <v-list-tile class="white">
               <v-list-tile-action>
                 <v-icon>school</v-icon>
@@ -49,7 +55,11 @@
               </v-list-tile-content>
             </v-list-tile>
           </v-list-item>
-          <v-list-item class="blue-grey lighten-4" @click="editedIndex = editedIndex === 2 ? -1 : 2" :class="{extended: (editedIndex === 2)}">
+          <v-list-item
+            class="blue-grey lighten-4"
+            @click="editedIndex = editedIndex === 2 ? -1 : 2"
+            :class="{extended: (editedIndex === 2)}"
+          >
             <v-list-tile class="white">
               <v-list-tile-action>
                 <v-icon>phone</v-icon>
@@ -86,7 +96,13 @@
   </div>
 
 
-  <v-btn v-if="editedIndex !== -1" @click.native.stop="editedIndex = -1" floating large class="animated xfast zoomIn delay1000 accent fab">
+  <v-btn
+    v-if="editedIndex !== -1"
+    @click.native.stop="editedIndex = -1"
+    floating
+    large
+    class="animated xfast zoomIn delay1000 accent fab"
+  >
     <v-icon class="white--text">
       done
     </v-icon>

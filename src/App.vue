@@ -14,7 +14,9 @@
       </v-list-item>
       <v-list-item>
         <v-list-tile router href="profile">
-          <v-list-tile-title class="secondary--text">{{ user.email }}</v-list-tile-title>
+          <v-list-tile-title class="secondary--text">
+            {{ user.email }}
+          </v-list-tile-title>
         </v-list-tile>
       </v-list-item>
     </v-list>
@@ -77,7 +79,11 @@
     </v-list>
   </v-navigation-drawer>
   <v-toolbar fixed>
-    <v-toolbar-side-icon v-if="user" class="white--text" @click.native.stop="sidebar = !sidebar" />
+    <v-toolbar-side-icon
+      v-if="user"
+      class="white--text"
+      @click.native.stop="sidebar = !sidebar"
+    />
     <v-toolbar-logo v-if="!user">
       Tutor'App
     </v-toolbar-logo>
@@ -92,14 +98,36 @@
   <main>
     <v-container fluid>
       <router-view></router-view>
-      <AdSense style="margin-top: 20px;" ad-client="ca-pub-8898907085286992" ad-slot="8385775230" ad-style="display: block" ad-format="auto"></AdSense>
+      <AdSense
+        style="margin-top: 20px;"
+        ad-client="ca-pub-8898907085286992"
+        ad-slot="8385775230"
+        ad-style="display: block"
+        ad-format="auto"
+      />
     </v-container>
   </main>
   <v-footer>
-    <v-btn class="white--text" flat href="https://github.com/tsauvajon/tutor-app">
-      GitHub
-      <v-icon right class="white--text" fa>github</v-icon>
+    <v-spacer />
+    <a href="https://github.com/tsauvajon/tutor-app">
+      <v-btn class="white--text" flat>
+        <v-icon class="white--text" fa>github</v-icon>
+      </v-btn>
+    </a>
+    <v-btn
+      v-tooltip:top="{ html: 'thomas.sauvajon.dev@gmail.com' }"
+      class="white--text"
+      flat
+      @click.native.stop=""
+      >
+      <v-icon class="white--text" fa>envelope</v-icon>
     </v-btn>
+    <a href="https://www.linkedin.com/in/thomas-sauvajon-782361101">
+      <v-btn class="white--text" flat>
+        <v-icon class="white--text" fa>linkedin</v-icon>
+      </v-btn>
+    </a>
+    <v-spacer />
   </v-footer>
 </v-app>
 </template>

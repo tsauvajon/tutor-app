@@ -57,7 +57,12 @@
       <v-card class="grey lighten-5">
         <v-card-title>
           <div class="row">
-            <v-chip v-for="(chip, i) in course.chips" :key="i" class="accent white--text" small>
+            <v-chip
+              v-for="(chip, i) in course.chips"
+              :key="i"
+              class="accent white--text"
+              small
+            >
               {{ chip }}
             </v-chip>
           </div>
@@ -100,7 +105,7 @@ export default {
           .filter(c => c.createdAt);
         switch (this.filter) {
           case 'mine':
-            return values.filter(c => c.creator === this.$store.getters.user.uid);
+            return values.filter(c => c.creator === this.user.uid);
           case 'subscribed':
             // TODO
             return [];
