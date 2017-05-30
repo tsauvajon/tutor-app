@@ -3,6 +3,7 @@ import Vuetify from 'vuetify';
 import firebase from 'firebase';
 import 'firebase/auth';
 import firebaseui from 'firebaseui';
+import VueFire from 'vuefire';
 
 import App from './App.vue';
 import store from './vuex/store';
@@ -10,6 +11,11 @@ import router from './router';
 import fbConfig from './helpers/firebaseConfig';
 
 Vue.use(Vuetify);
+Vue.use(VueFire);
+
+const fbApp = firebase.initializeApp(fbConfig);
+const fbUiApp = new firebaseui.auth.AuthUI(firebase.auth(fbApp));
+const database = firebase.database();
 
 /* eslint-disable no-new */
 new Vue({
@@ -19,11 +25,13 @@ new Vue({
 
   el: '#app',
 
+  firebase: () => ({
+    users: database.ref('users'),
+  }),
+
   render: h => h(App),
 
   created() {
-    const fbApp = firebase.initializeApp(fbConfig);
-    const fbUiApp = new firebaseui.auth.AuthUI(firebase.auth(fbApp));
     firebase.auth().onAuthStateChanged(user => store.dispatch('setUser', user));
     store.dispatch('setFbApp', fbApp);
     store.dispatch('setFbUiApp', fbUiApp);

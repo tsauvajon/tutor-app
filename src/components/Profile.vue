@@ -1,7 +1,7 @@
 <template>
 <div style="margin-top: 50px;">
   <div>
-    <v-card hover raised class="ta-small-container animated fadeInUp xfast">
+    <v-card v-if="user" hover raised class="ta-small-container animated fadeInUp xfast">
       <v-card-row>
         <v-list two-line class="ta-inner-container">
           <v-list-item class="blue-grey lighten-4">
