@@ -4,10 +4,12 @@
     <v-list dense class="moche">
       <v-list-item>
         <v-list-tile router href="profile">
-          <v-list-tile-avatar v-if="user.photoURL">
-            <img :src="user.photoURL" />
+          <v-list-tile-avatar>
+            <img :src="user.photoURL || `https://robohash.org/${user.uid}.png`" />
           </v-list-tile-avatar>
-          <v-list-tile-title class="secondary--text">{{ user.displayName || user.email.split("@")[0] }}</v-list-tile-title>
+          <v-list-tile-title class="secondary--text">
+            {{ user.displayName || user.email.split("@")[0] }}
+          </v-list-tile-title>
         </v-list-tile>
       </v-list-item>
       <v-list-item>
