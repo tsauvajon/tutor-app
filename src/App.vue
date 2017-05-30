@@ -1,7 +1,7 @@
 <template>
 <v-app style="background: none;">
   <v-navigation-drawer v-if="user" temporary v-model="sidebar">
-    <v-list style="padding-top: 10px" class="grey lighten-3">
+    <v-list dense class="moche">
       <v-list-item>
         <v-list-tile router href="profile">
           <v-list-tile-avatar v-if="user.photoURL">
@@ -10,17 +10,27 @@
           <v-list-tile-title class="secondary--text">{{ user.displayName || user.email.split("@")[0] }}</v-list-tile-title>
         </v-list-tile>
       </v-list-item>
-      <v-subheader class="grey lighten-3 secondary--text">{{ user.email }}</v-subheader>
+      <v-list-item>
+        <v-list-tile router href="profile">
+          <v-list-tile-title class="secondary--text">{{ user.email }}</v-list-tile-title>
+        </v-list-tile>
+      </v-list-item>
     </v-list>
-    <v-list subheader>
+    <v-list subheader dense>
       <v-subheader>Tutorat</v-subheader>
       <v-list-item v-for="item in sideMenuItems" :key="item.name">
         <v-list-tile ripple router :href="item.href">
+          <v-list-tile-action>
+            <v-icon class="white--text">{{ item.icon }}</v-icon>
+          </v-list-tile-action>
           <v-list-tile-title>{{ item.name }}</v-list-tile-title>
         </v-list-tile>
       </v-list-item>
       <v-list-item>
         <v-list-tile :href="slack">
+          <v-list-tile-action>
+            <v-icon class="white--text">chat</v-icon>
+          </v-list-tile-action>
           <v-list-tile-title>
             Chat
           </v-list-tile-title>
@@ -31,7 +41,12 @@
         <v-subheader>Administration</v-subheader>
         <v-list-item v-for="item in navigation" :key="item.name">
           <v-list-tile ripple router :href="item.href">
+          <v-list-tile-action>
+            <v-icon class="white--text">{{ item.icon }}</v-icon>
+          </v-list-tile-action>
+              <v-list-tile-content>
             <v-list-tile-title>{{ item.name }}</v-list-tile-title>
+          </v-list-tile-content>
           </v-list-tile>
         </v-list-item>
       </template>
@@ -39,6 +54,9 @@
       <v-subheader>Compte</v-subheader>
       <v-list-item>
         <v-list-tile router href="profile">
+          <v-list-tile-action>
+            <v-icon class="white--text">face</v-icon>
+          </v-list-tile-action>
           <v-list-tile-title>
             Mon profil
           </v-list-tile-title>
@@ -46,8 +64,11 @@
       </v-list-item>
       <v-list-item @click="logOut">
         <v-list-tile>
+          <v-list-tile-action>
+            <v-icon class="white--text">power_settings_new</v-icon>
+          </v-list-tile-action>
           <v-list-tile-title>
-            Se déconnecter
+            Déconnexion
           </v-list-tile-title>
         </v-list-tile>
       </v-list-item>
@@ -69,16 +90,26 @@
   <main>
     <v-container fluid>
       <router-view></router-view>
+      <!-- <AdSense ad-client="ca-pub-8898907085286992" ad-slot="8385775230" ad-style="display: block" ad-format="auto"></AdSense> -->
     </v-container>
   </main>
+  <v-footer>
+    <v-btn class="white--text" flat href="https://github.com/tsauvajon/tutor-app">GitHub</v-btn>
+  </v-footer>
 </v-app>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import {
+  mapGetters
+} from 'vuex';
 import firebase from 'firebase';
 
-import { navigation, sideMenuItems } from './helpers/navigation';
+import AdSense from './components/AdSense';
+import {
+  navigation,
+  sideMenuItems
+} from './helpers/navigation';
 
 export default {
   name: 'app',
@@ -110,6 +141,10 @@ export default {
       // console.log('onError');
       this.$router.push('/auth');
     },
+  },
+
+  components: {
+    AdSense,
   },
 };
 </script>

@@ -4,12 +4,14 @@ export const sideMenuItems = [
     href: {
       name: 'courses',
     },
+    icon: 'school',
   },
   {
     name: 'Mon planning',
     href: {
       name: 'agenda',
     },
+    icon: 'date_range',
   },
 ];
 
@@ -19,11 +21,13 @@ export const navigation = [
     href: {
       name: 'users',
     },
+    icon: 'group',
   },
   {
     name: 'Paramètres',
     href: {
       name: 'params',
     },
+    icon: 'settings',
   },
 ];

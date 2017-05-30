@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-import Home from '../components/Home.vue';
 import Params from '../components/Admin/Params.vue';
 import Users from '../components/Admin/Users.vue';
 import Profile from '../components/Profile.vue';
@@ -28,7 +27,7 @@ const router = new VueRouter({
   routes: [
     {
       path: '/',
-      component: Home,
+      component: Courses,
       beforeEnter: checkFromAuth,
     },
     {
@@ -52,11 +51,6 @@ const router = new VueRouter({
       component: Profile,
     },
     {
-      path: '/courses/mine',
-      name: 'mycourses',
-      component: Home,
-    },
-    {
       path: '/courses',
       name: 'courses',
       component: Courses,
@@ -65,11 +59,6 @@ const router = new VueRouter({
       path: '/agenda',
       name: 'agenda',
       component: Agenda,
-    },
-    {
-      path: '/chat',
-      name: 'chat',
-      component: Home,
     },
   ],
 });

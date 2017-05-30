@@ -69,7 +69,7 @@
       </v-card>
     </v-expansion-panel-content>
   </v-expansion-panel>
-  <v-btn primary floating large light class="fab">
+  <v-btn floating large light class="fab accent">
     <v-icon class="white--text">add</v-icon>
   </v-btn>
 </div>

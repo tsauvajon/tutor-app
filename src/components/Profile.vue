@@ -2,14 +2,9 @@
 <div style="margin-top: 50px;">
   <div>
     <v-card hover raised class="ta-small-container animated fadeInUp xfast">
-      <!-- <v-card-row>
-        <v-card-title class="secondary--text">
-          <img style="border-radius: 5%;" :src="user.photoURL" height="100px" />
-        </v-card-title>
-      </v-card-row> -->
       <v-card-row>
         <v-list two-line class="ta-inner-container">
-          <v-list-item class="blue-grey lighten-4" @click="editedIndex = editedIndex === 0 ? -1 : 0" :class="{extended: (editedIndex === 0)}">
+          <v-list-item class="blue-grey lighten-4">
             <v-list-tile class="white">
               <v-list-tile-action>
                 <img style="border-radius: 50%;" :src="user.photoURL" height="32px" />
@@ -123,8 +118,8 @@ export default {
 
 <style scoped>
 .extended {
-  padding-top: 30px !important;
-  padding-bottom: 30px !important;
+  padding-top: 20px !important;
+  padding-bottom: 20px !important;
 }
 
 .list__item {
