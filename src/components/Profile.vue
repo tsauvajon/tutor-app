@@ -7,7 +7,11 @@
           <v-list-item class="blue-grey lighten-4">
             <v-list-tile class="white">
               <v-list-tile-action>
-                <img style="border-radius: 50%;" :src="user.photoURL" height="32px" />
+                <img
+                  style="border-radius: 50%;"
+                  :src="user.photoURL || `https://robohash.org/${user.uid}.png`"
+                  height="32px"
+                />
               </v-list-tile-action>
               <v-list-tile-content>
                 <v-list-tile-title>
