@@ -11,7 +11,13 @@
         />
         {{ user.displayName || user.email.split("@")[0] }}
       </v-card-title>
-      <v-card-row>
+      <v-card-row v-if="loading">
+        <v-progress-linear
+          indeterminate
+          class="primary--text"
+        />
+      </v-card-row>
+      <v-card-row v-else>
         <v-list two-line class="ta-inner-container">
           <v-list-item
             class="blue-grey lighten-4"
@@ -27,11 +33,11 @@
                   <template v-if="false">
                   <input
                     type="text"
-                    v-model="profile.school"
+                    v-model="schoolName"
                   >
                   </input>
                 </template>
-                  <template v-else>{{ profile.school }}</template>
+                  <template v-else>{{ schoolName }}</template>
                 </v-list-tile-title>
                 <v-list-tile-sub-title>
                   {{ profile.class }}
@@ -125,14 +131,19 @@ export default {
     isSaved: true,
     editedIndex: -1,
     profile: {
-      name: 'Thomas Sauvajon',
-      age: 24,
-      school: 'EPSI Montpellier',
       class: 'B3 Classe 2',
       phone: '06 99 99 99 99',
-      email: 'thomas.sauvajon1@epsi.fr',
     },
+    loading: true,
   }),
+
+  created() {
+    this.$store.getters.fbApp.database().ref('params').on('value', snapshot => {
+      console.log(snapshot.val());
+      this.schoolName = snapshot.val().schoolName;
+      this.loading = false;
+    });
+  },
 
   computed: {
     ...mapGetters(['user', 'courses']),
