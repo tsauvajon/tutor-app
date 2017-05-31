@@ -77,6 +77,13 @@
         </v-list-tile>
       </v-list-item>
     </v-list>
+    <AdSense
+      style="margin-top: 5px;"
+      ad-client="ca-pub-8898907085286992"
+      ad-slot="8508369630"
+      ad-style="display: block"
+      ad-format="auto"
+    />
   </v-navigation-drawer>
   <v-toolbar fixed>
     <v-toolbar-side-icon
