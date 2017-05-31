@@ -4,7 +4,7 @@
 
 Tutoring app for schools
 
-[demo](https://tutorapp-bdaa7.firebaseapp.com)
+[demo](https://tutorapp-bdaa7.firebaseapp.com/#/auth)
 
 
 ## Prepare Firebase
