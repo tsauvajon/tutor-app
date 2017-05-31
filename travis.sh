@@ -6,13 +6,6 @@ then
   cd functions;
   yarn;
   cd ..;
-  yarn lint;
-  yarn test;
-  yarn build;
   cp public/* dist;
   firebase deploy --token ${FIREBASE_TOKEN};
-else
-  yarn lint;
-  yarn test;
-  yarn build;
 fi

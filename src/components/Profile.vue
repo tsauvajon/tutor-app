@@ -138,8 +138,7 @@ export default {
   }),
 
   created() {
-    this.$store.getters.fbApp.database().ref('params').on('value', snapshot => {
-      console.log(snapshot.val());
+    this.$store.getters.fbApp.database().ref('params').on('value', (snapshot) => {
       this.schoolName = snapshot.val().schoolName;
       this.loading = false;
     });
