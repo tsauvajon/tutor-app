@@ -63,8 +63,8 @@ const router = new VueRouter({
   ],
 });
 
-router.beforeEach((from, to, next) => {
-  switch (from.name) {
+router.beforeEach((to, from, next) => {
+  switch (to.name) {
     case 'profile':
       store.dispatch('setPageTitle', 'Profil');
       break;
@@ -86,6 +86,32 @@ router.beforeEach((from, to, next) => {
       break;
   }
   next();
+});
+
+// router.beforeEach((to, from, next) => {
+//   if (to.path === '/auth' && store.getters.user) {
+//     next('/profile');
+//   }
+//   next();
+// });
+
+router.afterEach((to) => {
+  if (to.path === '/auth' && store.getters.user) {
+    router.replace('/profile');
+  }
+
+  if (to.path !== '/auth' && !store.getters.user) {
+    const fb = store.getters.fbApp;
+
+    // console.log(store.getters);
+    // console.log(fb);
+    // console.log(store.getters.fbApp);
+    // si fb === null alors il faut attendre mais c'est chiant
+    // si fb !== null on peut check s'il y a un current user
+    if (fb && !fb.auth().currentUser) {
+      router.replace('/auth');
+    }
+  }
 });
 
 export default router;

@@ -52,18 +52,20 @@
       :key="course.createdat"
     >
       <v-card hover>
-        <v-card-title class="secondary--text">
+        <v-card-title class="secondary white--text">
           {{ course.title }}
       </v-card-title>
       <v-card-row v-if="course.chips && course.chips.length">
-        <v-chip
-          v-for="(chip, i) in course.chips"
-          :key="i"
-          class="accent white--text"
-          small
-        >
-          {{ chip }}
-        </v-chip>
+        <div class="row">
+          <v-chip
+            v-for="(chip, i) in course.chips"
+            :key="i"
+            class="accent white--text"
+            small
+          >
+            {{ chip }}
+          </v-chip>
+        </div>
       </v-card-row>
       <v-card-text>
         {{ course.description }}
@@ -85,36 +87,6 @@
       </v-card>
     </v-flex>
   </v-layout>
-  <!-- <v-expansion-panel style="margin-top: 15px;" v-else>
-    <v-expansion-panel-content
-      class="animated fadeInUp xfast"
-      v-if="course.title"
-      v-for="course in filtered"
-      :key="course.createdat"
-    >
-      <div slot="header">
-        {{ course.title }}
-      </div>
-      <v-card class="grey lighten-5">
-        <v-card-title>
-          <div class="row">
-            <v-chip
-              v-for="(chip, i) in course.chips"
-              :key="i"
-              class="accent white--text"
-              small
-            >
-              {{ chip }}
-            </v-chip>
-          </div>
-        </v-card-title>
-        <v-card-text>
-          {{ course.description }}
-          <br><br> Création : {{ new Date(course.createdAt).toString() }}
-        </v-card-text>
-      </v-card>
-    </v-expansion-panel-content>
-  </v-expansion-panel> -->
   <v-btn floating large light class="fab accent">
     <v-icon class="white--text">add</v-icon>
   </v-btn>
