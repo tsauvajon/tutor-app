@@ -84,21 +84,21 @@
       </v-card-row>
     </v-card>
     <div class="mt-3 mb-3">&nbsp;</div>
-    <v-card hover raised v-if="filtered.length">
+    <v-card hover raised v-if="courses && courses.length">
       <v-card-title class="secondary white--text">
         Derniers cours
       </v-card-title>
       <v-card-text>
         <v-list two-line>
-          <v-list-item v-for="course in filtered" :key="course.createdAt">
+          <v-list-item v-for="course in courses" :key="course.createdAt">
             <v-list-tile>
               <v-list-tile-content>
               <v-list-tile-title>
                 {{ course.title }}
               </v-list-tile-title>
-              <v-list-tile-subtitle>
+              <v-list-tile-sub-title>
                 {{ new Date(course.createdAt).toLocaleDateString() }}
-              </v-list-tile-subtitle>
+              </v-list-tile-sub-title>
             </v-list-tile-content>
             </v-list-tile>
           </v-list-item>
@@ -135,21 +135,23 @@ export default {
       phone: '06 99 99 99 99',
     },
     loading: true,
+    courses: null,
   }),
 
   created() {
-    this.$store.getters.fbApp.database().ref('params').on('value', (snapshot) => {
-      this.schoolName = snapshot.val().schoolName;
+    const database = this.$store.getters.fbApp.database();
+    database.ref('params').on('value', (snapshot) => {
+      this.schoolName = snapshot.val().schoolName.value;
       this.loading = false;
+    });
+
+    database.ref('courses').on('value', (snapshot) => {
+      this.courses = Object.values(snapshot.val()).filter(c => c.creator === this.user.uid);
     });
   },
 
   computed: {
-    ...mapGetters(['user', 'courses']),
-    filtered() {
-      return this.courses !== null ?
-        Object.values(this.courses).filter(c => c.creator === this.user.uid) : [];
-    },
+    ...mapGetters(['user']),
   },
 };
 </script>

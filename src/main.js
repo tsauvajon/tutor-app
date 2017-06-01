@@ -15,7 +15,6 @@ Vue.use(VueFire);
 
 const fbApp = firebase.initializeApp(fbConfig);
 const fbUiApp = new firebaseui.auth.AuthUI(firebase.auth(fbApp));
-// const database = firebase.database();
 
 /* eslint-disable no-new */
 new Vue({
@@ -24,12 +23,6 @@ new Vue({
   router,
 
   el: '#app',
-
-  // firebase: () => ({
-  //   users: database.ref('users'),
-  //   params: database.ref('params'),
-  //   schoolName: database.ref('params/schoolName'),
-  // }),
 
   render: h => h(App),
 
