@@ -95,23 +95,24 @@ router.beforeEach((to, from, next) => {
 //   next();
 // });
 
-router.afterEach((to) => {
-  if (to.path === '/auth' && store.getters.user) {
-    router.replace('/profile');
-  }
-
-  if (to.path !== '/auth' && !store.getters.user) {
-    const fb = store.getters.fbApp;
-
-    // console.log(store.getters);
-    // console.log(fb);
-    // console.log(store.getters.fbApp);
-    // si fb === null alors il faut attendre mais c'est chiant
-    // si fb !== null on peut check s'il y a un current user
-    if (fb && !fb.auth().currentUser) {
-      router.replace('/auth');
-    }
-  }
-});
+// FIXME: si user pas log redirigé vers /auth
+// router.afterEach((to) => {
+//   if (to.path === '/auth' && store.getters.user) {
+//     router.replace('/profile');
+//   }
+//
+//   if (to.path !== '/auth' && !store.getters.user) {
+//     const fb = store.getters.fbApp;
+//
+//     // console.log(store.getters);
+//     // console.log(fb);
+//     // console.log(store.getters.fbApp);
+//     // si fb === null alors il faut attendre mais c'est chiant
+//     // si fb !== null on peut check s'il y a un current user
+//     if (fb && !fb.auth().currentUser) {
+//       router.replace('/auth');
+//     }
+//   }
+// });
 
 export default router;

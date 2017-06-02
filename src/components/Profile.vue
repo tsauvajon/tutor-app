@@ -19,51 +19,47 @@
       </v-card-row>
       <v-card-row v-else>
         <v-list two-line class="ta-inner-container">
-          <v-list-item
-            class="blue-grey lighten-4"
-            @click="editedIndex = editedIndex === 1 ? -1 : 1"
-            :class="{extended: (editedIndex === 1)}"
-          >
+          <v-list-item class="blue-grey lighten-4">
             <v-list-tile class="white">
               <v-list-tile-action>
                 <v-icon>school</v-icon>
               </v-list-tile-action>
               <v-list-tile-content>
                 <v-list-tile-title>
-                  <template v-if="false">
-                  <input
-                    type="text"
-                    v-model="schoolName"
-                  >
-                  </input>
-                </template>
-                  <template v-else>{{ schoolName }}</template>
+                  {{ schoolName }}
                 </v-list-tile-title>
                 <v-list-tile-sub-title>
-                  {{ profile.class }}
+                  <!-- <v-select
+                    :items="classNames"
+                    v-model="e1"
+                    label="Select"
+                    dark
+                    single-line
+                    auto
+                  /> -->
+                  {{ userClass.text }}
                 </v-list-tile-sub-title>
               </v-list-tile-content>
             </v-list-tile>
           </v-list-item>
-          <v-list-item
-            class="blue-grey lighten-4"
-            @click="editedIndex = editedIndex === 2 ? -1 : 2"
-            :class="{extended: (editedIndex === 2)}"
-          >
+          <v-list-item class="blue-grey lighten-4">
             <v-list-tile class="white">
               <v-list-tile-action>
                 <v-icon>phone</v-icon>
               </v-list-tile-action>
               <v-list-tile-content>
                 <v-list-tile-title>
-                  <template v-if="false">
-                  <input
+                  <template v-if="true">
+                  <v-text-field
+                    single-line
+                    label="N° téléphone"
                     type="text"
-                    v-model="profile.phone"
+                    append-icon="mode_edit"
+                    v-model="dbuser.phone"
                   >
-                  </input>
+                </v-text-field>
                 </template>
-                  <template v-else>{{ profile.phone }}</template>
+                  <template v-else>{{ dbuser.phone }}</template>
                 </v-list-tile-title>
               </v-list-tile-content>
             </v-list-tile>
@@ -81,6 +77,12 @@
             </v-list-tile>
           </v-list-item>
         </v-list>
+      </v-card-row>
+      <v-divider />
+      <v-card-row actions>
+        <v-btn flat class="accent--text">
+          Enregistrer
+        </v-btn>
       </v-card-row>
     </v-card>
     <div class="mt-3 mb-3">&nbsp;</div>
@@ -106,18 +108,6 @@
       </v-card-text>
     </v-card>
   </div>
-
-  <v-btn
-    v-if="editedIndex !== -1"
-    @click.native.stop="editedIndex = -1"
-    floating
-    large
-    class="animated xfast zoomIn delay1000 accent fab"
-  >
-    <v-icon class="white--text">
-      done
-    </v-icon>
-  </v-btn>
 </div>
 </template>
 
@@ -128,30 +118,44 @@ export default {
   name: 'profile',
 
   data: () => ({
-    isSaved: true,
-    editedIndex: -1,
-    profile: {
-      class: 'B3 Classe 2',
-      phone: '06 99 99 99 99',
-    },
     loading: true,
     courses: null,
+    classNames: null,
+    schoolName: null,
+    dbuser: null,
   }),
+
+  computed: {
+    ...mapGetters(['user']),
+
+    userClass() {
+      return this.classNames.filter(c => c['.key'] === this.dbuser.class)[0];
+    },
+  },
 
   created() {
     const database = this.$store.getters.fbApp.database();
     database.ref('params').on('value', (snapshot) => {
       this.schoolName = snapshot.val().schoolName.value;
+      this.classNames = Object.keys(snapshot.val().classNames)
+        .map(key => ({
+          '.key': key,
+          text: snapshot.val().classNames[key],
+        }));
       this.loading = false;
     });
 
     database.ref('courses').on('value', (snapshot) => {
-      this.courses = Object.values(snapshot.val()).filter(c => c.creator === this.user.uid);
+      this.courses = Object.values(snapshot.val())
+        .filter(c => c.creator === this.user.uid);
     });
-  },
 
-  computed: {
-    ...mapGetters(['user']),
+    database
+      .ref('users')
+      .child(this.$store.getters.user.uid)
+      .on('value', (snapshot) => {
+        this.dbuser = snapshot.val();
+      });
   },
 };
 </script>

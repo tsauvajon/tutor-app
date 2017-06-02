@@ -27,7 +27,17 @@ new Vue({
   render: h => h(App),
 
   beforeCreate() {
-    firebase.auth().onAuthStateChanged(user => store.dispatch('setUser', user));
+    firebase.auth().onAuthStateChanged((user) => {
+      store.dispatch('setUser', user);
+      if (user) {
+        const { displayName, email, photoURL } = user;
+        this.$store.getters.fbApp.database().ref(`users/${user.uid}`).update({
+          displayName,
+          email,
+          photoURL,
+        });
+      }
+    });
     store.dispatch('setFbApp', fbApp);
     store.dispatch('setFbUiApp', fbUiApp);
   },

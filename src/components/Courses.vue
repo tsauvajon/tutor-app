@@ -31,7 +31,11 @@
     </v-card-title>
   </v-card>
 
-  <v-card hover style="margin-top: 15px;" v-if="!filtered || filtered === null">
+  <v-card
+    hover
+    style="margin-top: 15px;"
+    v-if="!filtered || filtered === null"
+  >
     <v-card-text>
       <v-progress-linear
         indeterminate
@@ -114,7 +118,10 @@ export default {
 
     filtered() {
       try {
-        const values = Object.values(this.courses)
+        const values = Object.keys(this.courses).map(k => ({
+          '.key': k,
+          ...this.courses[k],
+        }))
           .filter(c => c.createdAt);
         switch (this.filter) {
           case 'mine':
