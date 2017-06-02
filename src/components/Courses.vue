@@ -84,7 +84,7 @@
           Editer
         </v-btn>
         </template>
-        <v-btn v-else flat class="accent--text">
+        <v-btn @click.native.stop="subscribe(course['.key'])" v-else flat class="accent--text">
           S'inscrire
         </v-btn>
       </v-card-row>
@@ -94,6 +94,9 @@
   <v-btn floating large light class="fab accent">
     <v-icon class="white--text">add</v-icon>
   </v-btn>
+  <pre>
+{{ courses }}
+  </pre>
 </div>
 </template>
 
@@ -111,6 +114,27 @@ export default {
     const database = this.$store.getters.fbApp.database();
     const coursesRef = database.ref('courses');
     this.$store.dispatch('setCoursesRef', coursesRef);
+  },
+
+  methods: {
+    subscribe(courseKey) {
+      const part = {};
+      part[this.$store.getters.user.uid] = true;
+      const database = this.$store.getters.fbApp.database();
+      database
+        .ref('courses')
+        .child(courseKey)
+        .child('participants')
+        .update({ ...part });
+
+      const sub = {};
+      sub[courseKey] = true;
+      database
+        .ref('users')
+        .child(this.$store.getters.user.uid)
+        .child('participations')
+        .update({ ...sub });
+    },
   },
 
   computed: {
