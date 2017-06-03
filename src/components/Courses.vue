@@ -84,7 +84,12 @@
           Editer
         </v-btn>
         </template>
-        <v-btn @click.native.stop="subscribe(course['.key'])" v-else flat class="accent--text">
+        <v-btn
+          @click.native.stop="subscribe(course['.key'])"
+          v-else
+          flat
+          class="accent--text"
+        >
           S'inscrire
         </v-btn>
       </v-card-row>
@@ -95,13 +100,13 @@
     <v-icon class="white--text">add</v-icon>
   </v-btn>
   <pre>
-{{ courses }}
+    {{filtered}}
   </pre>
 </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'courses',
@@ -113,7 +118,7 @@ export default {
   created() {
     const database = this.$store.getters.fbApp.database();
     const coursesRef = database.ref('courses');
-    this.$store.dispatch('setCoursesRef', coursesRef);
+    this.setCoursesRef(coursesRef);
   },
 
   methods: {
@@ -135,12 +140,19 @@ export default {
         .child('participations')
         .update({ ...sub });
     },
+
+    ...mapActions(['setCoursesRef']),
   },
 
   computed: {
     ...mapGetters(['courses', 'user']),
 
     filtered() {
+      /*
+        try catch plutôt qu'un if not null
+        pour éviter d'afficher temporairement
+        'aucun résultat disponible'
+      */
       try {
         const values = Object.keys(this.courses).map(k => ({
           '.key': k,
@@ -151,13 +163,16 @@ export default {
           case 'mine':
             return values.filter(c => c.creator === this.user.uid);
           case 'subscribed':
-            // TODO
-            return [];
+            return values
+              .filter(c => c.participants)
+              .filter(c => Object.keys(c.participants)
+                .filter(key => c.participants[key])
+                .includes(this.user.uid));
           default:
             return values;
         }
       } catch (e) {
-        return this.courses;
+        return [];
       }
     },
 

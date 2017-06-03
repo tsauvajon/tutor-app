@@ -36,6 +36,8 @@ new Vue({
           email,
           photoURL,
         });
+      } else {
+        this.$router.replace('/auth');
       }
     });
     store.dispatch('setFbApp', fbApp);
