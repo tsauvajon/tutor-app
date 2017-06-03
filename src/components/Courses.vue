@@ -145,31 +145,26 @@ export default {
     ...mapGetters(['courses', 'user']),
 
     filtered() {
-      /*
-        try catch plutôt qu'un if not null
-        pour éviter d'afficher temporairement
-        'aucun résultat disponible'
-      */
-      try {
-        const values = Object.keys(this.courses).map(k => ({
-          '.key': k,
-          ...this.courses[k],
-        }))
-          .filter(c => c.createdAt);
-        switch (this.filter) {
-          case 'mine':
-            return values.filter(c => c.creator === this.user.uid);
-          case 'subscribed':
-            return values
-              .filter(c => c.participants)
-              .filter(c => Object.keys(c.participants)
-                .filter(key => c.participants[key])
-                .includes(this.user.uid));
-          default:
-            return values;
-        }
-      } catch (e) {
-        return [];
+      if (!this.courses) {
+        return null;
+      }
+      
+      const values = Object.keys(this.courses).map(k => ({
+        '.key': k,
+        ...this.courses[k],
+      }))
+        .filter(c => c.createdAt);
+      switch (this.filter) {
+        case 'mine':
+          return values.filter(c => c.creator === this.user.uid);
+        case 'subscribed':
+          return values
+            .filter(c => c.participants)
+            .filter(c => Object.keys(c.participants)
+              .filter(key => c.participants[key])
+              .includes(this.user.uid));
+        default:
+          return values;
       }
     },
 
