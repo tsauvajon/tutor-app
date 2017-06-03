@@ -148,7 +148,7 @@ export default {
       if (!this.courses) {
         return null;
       }
-      
+
       const values = Object.keys(this.courses).map(k => ({
         '.key': k,
         ...this.courses[k],
