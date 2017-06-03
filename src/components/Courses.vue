@@ -99,9 +99,6 @@
   <v-btn floating large light class="fab accent">
     <v-icon class="white--text">add</v-icon>
   </v-btn>
-  <pre>
-    {{filtered}}
-  </pre>
 </div>
 </template>
 
