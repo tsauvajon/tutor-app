@@ -51,6 +51,10 @@ const router = new VueRouter({
       component: Profile,
     },
     {
+      path: '/users/:id',
+      component: Profile,
+    },
+    {
       path: '/courses',
       name: 'courses',
       component: Courses,

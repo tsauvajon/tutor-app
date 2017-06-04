@@ -3,7 +3,7 @@
   <v-navigation-drawer v-if="user" temporary v-model="sidebar">
     <v-list dense class="moche">
       <v-list-item>
-        <v-list-tile router href="profile">
+        <v-list-tile router :href="`/users/${user.uid}`">
           <v-list-tile-avatar>
             <img :src="user.photoURL || `https://robohash.org/${user.uid}.png`" />
           </v-list-tile-avatar>
@@ -13,7 +13,7 @@
         </v-list-tile>
       </v-list-item>
       <v-list-item>
-        <v-list-tile router href="profile">
+        <v-list-tile router :href="`/users/${user.uid}`">
           <v-list-tile-title class="secondary--text">
             {{ user.email }}
           </v-list-tile-title>
@@ -57,7 +57,7 @@
       <v-divider />
       <v-subheader>Compte</v-subheader>
       <v-list-item>
-        <v-list-tile router href="profile">
+        <v-list-tile router :href="`/users/${user.uid}`">
           <v-list-tile-action>
             <v-icon class="white--text">face</v-icon>
           </v-list-tile-action>
@@ -122,7 +122,7 @@
       </v-btn>
     </a>
     <v-btn
-      v-tooltip:top="{ html: 'thomas.sauvajon.dev@gmail.com' }"
+      v-tooltip:top="{ html: 'thomas.sauvajon@gmail.com' }"
       class="white--text"
       flat
       @click.native.stop=""
