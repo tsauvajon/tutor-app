@@ -176,6 +176,9 @@ export default {
     ...mapGetters(['user']),
 
     userClass() {
+      if (!this.classNames) {
+        return null;
+      }
       return this.classNames.filter(c => c['.key'] === this.dbuser.class)[0];
     },
   },

@@ -45,11 +45,11 @@ const router = new VueRouter({
       name: 'users',
       component: Users,
     },
-    {
-      path: '/profile',
-      name: 'profile',
-      component: Profile,
-    },
+    // {
+    //   path: '/profile',
+    //   name: 'profile',
+    //   component: Profile,
+    // },
     {
       path: '/users/:id',
       component: Profile,
