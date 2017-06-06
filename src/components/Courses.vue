@@ -31,6 +31,7 @@
     </v-card-title>
   </v-card>
 
+  <!-- Chargement -->
   <v-card
     hover
     style="margin-top: 15px;"
@@ -43,11 +44,15 @@
       />
     </v-card-text>
   </v-card>
+
+  <!-- Aucun cours -->
   <v-card hover style="margin-top: 15px;" v-else-if="!filtered.length">
     <v-card-text>
       Rien à afficher !
     </v-card-text>
   </v-card>
+
+  <!-- Affichage des cours -->
   <v-layout row wrap v-else style="margin-bottom: 75px;">
     <v-flex
       style="margin-top: 15px; "
@@ -59,6 +64,15 @@
         <v-card-title class="secondary white--text">
           {{ course.title }}
       </v-card-title>
+
+      <!-- <v-card-row v-if="course.participants">
+        <pre>
+          {{ Object.keys(course.participants)
+              .filter(key => course.participants[key])
+              .includes(user.uid) }}
+        </pre>
+      </v-card-row> -->
+
       <v-card-row v-if="course.chips && course.chips.length">
         <div class="row">
           <v-chip
@@ -77,21 +91,31 @@
       <v-divider></v-divider>
       <v-card-row actions>
         <template v-if="course.creator === user.uid">
-        <v-btn flat class="accent--text">
-          Supprimer
-        </v-btn>
-        <v-btn flat class="accent--text">
-          Editer
-        </v-btn>
+        <v-btn
+          @click.native.stop="remove(course['.key'])"
+          flat
+          class="accent--text"
+        >Supprimer</v-btn>
+        <v-btn
+          @click.native.stop="edit(course['.key'])"
+          flat
+          class="accent--text"
+        >Editer</v-btn>
         </template>
         <v-btn
+          v-else-if="!course.participants || !Object.keys(course.participants)
+              .filter(key => course.participants[key])
+              .includes(user.uid)"
           @click.native.stop="subscribe(course['.key'])"
+          flat
+          class="accent--text"
+        >S'inscrire</v-btn>
+        <v-btn
           v-else
           flat
           class="accent--text"
-        >
-          S'inscrire
-        </v-btn>
+          @click.native.stop="unsubscribe(course['.key'])"
+        >Se désinscrire</v-btn>
       </v-card-row>
       </v-card>
     </v-flex>
@@ -137,6 +161,33 @@ export default {
         .child('participations')
         .update({ ...sub });
     },
+
+    unsubscribe(courseKey) {
+      const database = this.$store.getters.fbApp.database();
+
+      const part = {};
+      part[this.$store.getters.user.uid] = false;
+
+      database
+        .ref('courses')
+        .child(courseKey)
+        .child('participants')
+        .update({ ...part });
+
+      const sub = {};
+      sub[courseKey] = false;
+
+      database
+        .ref('users')
+        .child(this.$store.getters.user.uid)
+        .child('participations')
+        .update({ ...sub });
+    },
+
+    // remove(courseKey) {
+    //   const database = this.$store.getters.fbApp.database();
+    //   // TODO
+    // },
 
     ...mapActions(['setCoursesRef']),
   },
