@@ -1,10 +1,6 @@
 <template>
 <div>
   <div>
-    <!-- <pre>
-      user: {{user}}
-      dbuser: {{dbuser}}
-    </pre> -->
     <v-card v-if="dbuser" hover raised class="ta-small-container animated fadeInUp xfast">
       <v-card-title class="secondary white--text">
         <img

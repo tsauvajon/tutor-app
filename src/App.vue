@@ -21,7 +21,7 @@
       </v-list-item>
     </v-list>
     <v-list subheader dense>
-      <v-subheader>Tutorat</v-subheader>
+      <v-subheader light>Tutorat</v-subheader>
       <v-list-item v-for="item in sideMenuItems" :key="item.name">
         <v-list-tile ripple router :href="item.href">
           <v-list-tile-action>
@@ -42,7 +42,7 @@
       </v-list-item>
       <template v-if="user">
         <v-divider />
-        <v-subheader>Administration</v-subheader>
+        <v-subheader light>Administration</v-subheader>
         <v-list-item v-for="item in navigation" :key="item.name">
           <v-list-tile ripple router :href="item.href">
           <v-list-tile-action>
@@ -55,7 +55,7 @@
         </v-list-item>
       </template>
       <v-divider />
-      <v-subheader>Compte</v-subheader>
+      <v-subheader light>Compte</v-subheader>
       <v-list-item>
         <v-list-tile router :href="`/users/${user.uid}`">
           <v-list-tile-action>
@@ -95,7 +95,7 @@
       Tutor'App
     </v-toolbar-logo>
     <template v-else>
-      <v-toolbar-title>{{ pageTitle }}</v-toolbar-title>
+      <v-toolbar-title class="white--text">{{ pageTitle }}</v-toolbar-title>
       <v-spacer />
       <v-btn icon class="white--text">
         <v-icon>search</v-icon>
