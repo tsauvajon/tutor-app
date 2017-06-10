@@ -3,7 +3,5 @@ node_modules/
 dist/
 npm-debug.log
 
-# private
-server/.firebaserc.private.js
-server/private
-src/private
+# testing
+coverage
