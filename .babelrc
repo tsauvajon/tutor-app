@@ -4,13 +4,11 @@
       "env",
       {
         "targets": {
-          "browsers": [">1 %"]
+          "browsers": ["last 2 versions"]
         }
       },
-      {
-        "es2015": { "modules": false }
-      }
     ],
     ["stage-0"]
-  ]
+  ],
+  "plugins": ["transform-async-to-generator"]
 }

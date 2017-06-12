@@ -18,19 +18,11 @@ module.exports = {
     rules: [{
       test: /\.vue$/,
       loader: 'vue-loader',
-      options: {
-        buble: {
-          objectAssign: 'Object.assign',
-        },
-      },
     },
     {
       test: /\.js$/,
-      loader: 'buble-loader',
+      loader: 'babel-loader',
       exclude: /node_modules/,
-      options: {
-        objectAssign: 'Object.assign',
-      },
     },
     {
       test: /\.styl$/,
