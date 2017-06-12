@@ -18,6 +18,9 @@
       - stocker les informations des utilisateurs dans la db<br>
       - gérer les droits des utilisateurs</v-card-text>
   </v-card>
+  <pre>
+    {{users}}
+  </pre>
   <!-- <v-list>
     <v-list-item>
       <v-list-tile>
@@ -30,7 +33,24 @@
 </template>
 
 <script>
+
 export default {
   name: 'users',
+
+  data: () => ({
+    users: null,
+  }),
+
+  async created() {
+    const database = this.$store.getters.fbApp.database();
+    const usersRef = database.ref('users');
+    const snapshot = await usersRef.on('value');
+    this.users = snapshot;
+    // ref.once("value")
+    //   .then(function(snapshot) {
+    //     var key = snapshot.key; // "ada"
+    //     var childKey = snapshot.child("name/last").key; // "last"
+    //   });
+  },
 };
 </script>

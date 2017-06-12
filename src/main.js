@@ -1,9 +1,10 @@
 import Vue from 'vue';
 import Vuetify from 'vuetify';
 import firebase from 'firebase';
-import 'firebase/auth';
 import firebaseui from 'firebaseui';
 import VueFire from 'vuefire';
+import 'firebase/auth';
+// import 'babel-polyfill';
 
 import App from './App.vue';
 import store from './vuex/store';

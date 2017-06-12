@@ -14,8 +14,9 @@
   "dependencies": {
     "babel-eslint": "^7.2.3",
     "babel-jest": "^20.0.3",
+    "babel-polyfill": "^6.23.0",
     "babel-preset-env": "^1.5.2",
-    "babel-preset-stage-2": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
     "buble": "^0.15.1",
     "buble-loader": "^0.4.0",
     "cross-env": "^5.0.1",
